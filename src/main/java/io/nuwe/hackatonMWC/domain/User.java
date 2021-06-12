@@ -97,11 +97,11 @@ public class User {
 		this.password = password;
 	}
 
-	public String getGitUserIdString() {
+	public String getGitUserId() {
 		return gitUserId;
 	}
 
-	public void setGitUserIdString(String gitUserId) {
+	public void setGitUserId(String gitUserId) {
 		this.gitUserId = gitUserId;
 	}
 
