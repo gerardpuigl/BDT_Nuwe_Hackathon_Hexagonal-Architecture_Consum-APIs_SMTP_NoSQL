@@ -22,6 +22,17 @@ public class GitProfile {
 	public GitProfile() {
 	}
 	
+	public GitProfile(String id, String username, String url, GitProfileType type, List<String> repositories,
+			List<String> repositoriesURL) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.url = url;
+		this.type = type;
+		this.repositories = repositories;
+		this.repositoriesURL = repositoriesURL;
+	}
+
 	public String getId() {
 		return id;
 	}

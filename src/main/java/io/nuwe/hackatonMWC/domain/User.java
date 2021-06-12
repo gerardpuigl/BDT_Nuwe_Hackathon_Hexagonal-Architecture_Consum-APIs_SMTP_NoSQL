@@ -2,19 +2,17 @@ package io.nuwe.hackatonMWC.domain;
 
 import javax.validation.constraints.Email;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Document(collection = "user")
 public class User {
 	
-	@Autowired
-	private PasswordEncoder passwordEncoder;
-	
-	private int id;
+	@Id
+	private String id;
 	
 	private String name;
 	
@@ -34,11 +32,23 @@ public class User {
 	public User() {
 	}
 	
-	public int getId() {
+	public User(String id, String name, String username, @Email(message = "Email no valid.") String email,
+			boolean isEmailVerified, String password, String gitUserId, String countryId) {
+		this.id = id;
+		this.name = name;
+		this.username = username;
+		this.email = email;
+		this.isEmailVerified = isEmailVerified;
+		this.password =  password;
+		this.gitUserId = gitUserId;
+		this.countryId = countryId;
+	}
+
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -70,7 +80,7 @@ public class User {
 		return isEmailVerified;
 	}
 
-	public void setEmailVerified(boolean isEmailVerified) {
+	public void setIsEmailVerified(boolean isEmailVerified) {
 		this.isEmailVerified = isEmailVerified;
 	}
 
@@ -79,7 +89,7 @@ public class User {
 	}
 
 	public void setPassword(String password) {
-		this.password = passwordEncoder.encode(password);
+		this.password = password;
 	}
 
 	public String getGitUserIdString() {
@@ -97,5 +107,9 @@ public class User {
 	public void setCountryId(String countryId) {
 		this.countryId = countryId;
 	}
-
+	
+	@JsonIgnore
+	public boolean isNew() {
+		return (getId() == null);
+	}
 }

@@ -18,6 +18,16 @@ public class Country {
 		alphaCode = new String[2];
 	}
 	
+	public Country(String id, String name, String alpha2Code, String alpha3Code, int callingCode) {
+		super();
+		this.id = id;
+		this.name = name;
+		alphaCode = new String[2];
+		alphaCode[0]= alpha2Code;
+		alphaCode[1]= alpha3Code;
+		this.callingCode = callingCode;
+	}
+
 	public String getId() {
 		return id;
 	}
