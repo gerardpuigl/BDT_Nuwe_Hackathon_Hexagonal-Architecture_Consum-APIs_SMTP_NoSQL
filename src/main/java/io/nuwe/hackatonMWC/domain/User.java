@@ -1,6 +1,7 @@
 package io.nuwe.hackatonMWC.domain;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -14,15 +15,19 @@ public class User {
 	@Id
 	private String id;
 	
+	@NotBlank
 	private String name;
 	
+	@NotBlank
 	private String username;
 	
 	@Email(message="Email no valid.")
+	@NotBlank
 	private String email;
 	
 	private boolean isEmailVerified;
 	
+	@NotBlank
 	private String password;
 	
 	private String gitUserId;
