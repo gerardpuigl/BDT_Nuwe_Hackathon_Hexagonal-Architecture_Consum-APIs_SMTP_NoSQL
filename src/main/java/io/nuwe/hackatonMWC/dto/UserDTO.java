@@ -1,12 +1,5 @@
 package io.nuwe.hackatonMWC.dto;
 
-import java.util.UUID;
-
-import javax.validation.constraints.Email;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
