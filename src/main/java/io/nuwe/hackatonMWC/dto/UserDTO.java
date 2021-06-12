@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserDTO {
 	
-	private UUID id;
+	private String id;
 	
 	private String name;
 	
@@ -25,15 +25,15 @@ public class UserDTO {
 	private String gitUserId;
 	
 	private String countryId;
-
+		
 	public UserDTO() {
 	}
-	
-	public UUID getId() {
+
+	public String getId() {
 		return id;
 	}
 
-	public void setId(UUID id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -61,19 +61,19 @@ public class UserDTO {
 		this.email = email;
 	}
 
-	public boolean isEmailVerified() {
+	public boolean isIsEmailVerified() {
 		return isEmailVerified;
 	}
 
-	public void setEmailVerified(boolean isEmailVerified) {
+	public void setIsEmailVerified(boolean isEmailVerified) {
 		this.isEmailVerified = isEmailVerified;
 	}
 
-	public String getGitUserIdString() {
+	public String getGitUserId() {
 		return gitUserId;
 	}
 
-	public void setGitUserIdString(String gitUserId) {
+	public void setGitUserId(String gitUserId) {
 		this.gitUserId = gitUserId;
 	}
 
@@ -84,5 +84,5 @@ public class UserDTO {
 	public void setCountryId(String countryId) {
 		this.countryId = countryId;
 	}
-	
+		
 }
