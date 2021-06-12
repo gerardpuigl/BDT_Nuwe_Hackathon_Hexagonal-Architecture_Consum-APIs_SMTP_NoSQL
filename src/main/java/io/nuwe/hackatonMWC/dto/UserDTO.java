@@ -1,44 +1,39 @@
-package io.nuwe.hackatonMWC.domain;
+package io.nuwe.hackatonMWC.dto;
+
+import java.util.UUID;
 
 import javax.validation.constraints.Email;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
-@Document(collection = "user")
-public class User {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class UserDTO {
 	
-	@Autowired
-	private PasswordEncoder passwordEncoder;
-	
-	private int id;
+	private UUID id;
 	
 	private String name;
 	
 	private String username;
 	
-	@Email(message="Email no valid.")
 	private String email;
 	
 	private boolean isEmailVerified;
-	
-	private String password;
-	
+		
 	private String gitUserId;
 	
 	private String countryId;
 
-	public User() {
+	public UserDTO() {
 	}
 	
-	public int getId() {
+	public UUID getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(UUID id) {
 		this.id = id;
 	}
 
@@ -74,14 +69,6 @@ public class User {
 		this.isEmailVerified = isEmailVerified;
 	}
 
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = passwordEncoder.encode(password);
-	}
-
 	public String getGitUserIdString() {
 		return gitUserId;
 	}
@@ -97,5 +84,5 @@ public class User {
 	public void setCountryId(String countryId) {
 		this.countryId = countryId;
 	}
-
+	
 }
