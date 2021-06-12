@@ -12,11 +12,13 @@ public class GitProfile {
 	private String username;
 	
 	private String url;
+
+	private GitProfileType type;
 	
 	private List<String> repositories;
 	
 	private List<String> repositoriesURL;
-
+	
 	public GitProfile() {
 	}
 	
@@ -43,6 +45,14 @@ public class GitProfile {
 	public void setUrl(String url) {
 		this.url = url;
 	}
+	
+	public GitProfileType getType() {
+		return type;
+	}
+
+	public void setType(GitProfileType type) {
+		this.type = type;
+	}
 
 	public List<String> getRepositories() {
 		return repositories;
@@ -59,5 +69,6 @@ public class GitProfile {
 	public void setRepositoriesURL(List<String> repositoriesURL) {
 		this.repositoriesURL = repositoriesURL;
 	}
+
 
 }
