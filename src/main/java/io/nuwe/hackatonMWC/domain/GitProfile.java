@@ -9,6 +9,8 @@ public class GitProfile {
 
 	private String id;
 	
+	private String userId;
+	
 	private String username;
 	
 	private String url;
@@ -22,10 +24,11 @@ public class GitProfile {
 	public GitProfile() {
 	}
 	
-	public GitProfile(String id, String username, String url, GitProfileType type, List<String> repositories,
+	public GitProfile(String id, String userId,String username, String url, GitProfileType type, List<String> repositories,
 			List<String> repositoriesURL) {
 		super();
 		this.id = id;
+		this.userId = userId;
 		this.username = username;
 		this.url = url;
 		this.type = type;
@@ -39,6 +42,14 @@ public class GitProfile {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+	
+	public String getUserId() {
+		return userId;
+	}
+
+	public void seUsertId(String id) {
+		this.userId = id;
 	}
 
 	public String getUsername() {

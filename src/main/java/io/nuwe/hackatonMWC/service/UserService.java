@@ -1,5 +1,7 @@
 package io.nuwe.hackatonMWC.service;
 
+import java.util.NoSuchElementException;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -14,7 +16,7 @@ import io.nuwe.hackatonMWC.repository.UserRepository;
 public class UserService {
 	
 	@Autowired
-	PasswordEncoder PasswordEncoder;
+	PasswordEncoder passwordEncoder;
 	
 	@Autowired
 	private UserRepository userRepository;
@@ -34,15 +36,21 @@ public class UserService {
 	}
 
 	public UserDTO newUser(User user) {
-		user.setPassword(PasswordEncoder.encode(user.getPassword()));
+		
+		//encode Password
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		User userDB = userRepository.save(user);
 		return modelMapper.map(userDB, UserDTO.class);
 	}
 
 	public UserDTO updateUser(User user, String id) {
-		user.setPassword(PasswordEncoder.encode(user.getPassword()));
+		//Check if user exist
+		if(!userRepository.existsById(id)) throw new NoSuchElementException();
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		User userDB = userRepository.save(user);
 		return modelMapper.map(userDB, UserDTO.class);
 	}
+	
+	
 	
 }

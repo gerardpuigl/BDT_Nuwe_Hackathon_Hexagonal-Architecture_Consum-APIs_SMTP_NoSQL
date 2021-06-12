@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.nuwe.hackatonMWC.domain.GitProfile;
 import io.nuwe.hackatonMWC.domain.User;
 import io.nuwe.hackatonMWC.dto.UserDTO;
+import io.nuwe.hackatonMWC.service.GitProfileService;
 import io.nuwe.hackatonMWC.service.UserService;
 
 @RestController
@@ -26,14 +28,17 @@ public class UserController {
 
 	@Autowired
 	UserService userService;
-
+	
+	@Autowired
+	GitProfileService gitProfileService;
+	
 	@PostMapping
-	public ResponseEntity<Object> newUser(@Valid @RequestBody User user) {
+	public ResponseEntity<Object> newUser(@Valid @RequestBody User user) throws Exception{
 		try {
 			UserDTO userDTO = userService.newUser(user);
 			return new ResponseEntity<>(userDTO, HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>("The user cannot be created./n" + e.getMessage(),
+			return new ResponseEntity<>("The user cannot be created.\n" + e.getMessage(),
 					HttpStatus.UNPROCESSABLE_ENTITY);
 		}
 	}
@@ -43,8 +48,8 @@ public class UserController {
 		try {
 			UserDTO userDTO = userService.updateUser(user, id);
 			return new ResponseEntity<>(userDTO, HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity<>("The user cannot be updated./n" + e.getMessage(),
+		} catch (NoSuchElementException e) {
+			return new ResponseEntity<>("The user cannot be updated.",
 					HttpStatus.UNPROCESSABLE_ENTITY);
 		}
 	}
@@ -66,6 +71,34 @@ public class UserController {
 			return new ResponseEntity<>("User deleted correctly.", HttpStatus.OK);
 		} catch (NoSuchElementException e) {
 			return new ResponseEntity<>("No user found with id: " + id, HttpStatus.UNPROCESSABLE_ENTITY);
+		}
+	}
+	
+	@GetMapping("/{id}/gitlab")
+	public ResponseEntity<Object> getGitLabProfile(@PathVariable("id") String id) {
+		try {
+			GitProfile gitProfile = gitProfileService.getGitLabProfile(id);
+			if(gitProfile!=null) {
+				return new ResponseEntity<>(gitProfile, HttpStatus.OK);
+			}else{
+				return new ResponseEntity<>("The user don't have GitLabProfile.", HttpStatus.NOT_FOUND);
+			}
+		} catch (NoSuchElementException e) {
+			return new ResponseEntity<>("No user found with id: \n" + id, HttpStatus.UNPROCESSABLE_ENTITY);
+		}
+	}
+	
+	@GetMapping("/{id}/github")
+	public ResponseEntity<Object> getGitHubProfile(@PathVariable("id") String id) {
+		try {
+			GitProfile gitProfile = gitProfileService.getGitHubProfile(id);
+			if(gitProfile!=null) {
+				return new ResponseEntity<>(gitProfile, HttpStatus.OK);
+			}else{
+				return new ResponseEntity<>("The user don't have GitLabProfile.", HttpStatus.NOT_FOUND);
+			}
+		} catch (NoSuchElementException e) {
+			return new ResponseEntity<>("No user found with id: \n" + id, HttpStatus.UNPROCESSABLE_ENTITY);
 		}
 	}
 }

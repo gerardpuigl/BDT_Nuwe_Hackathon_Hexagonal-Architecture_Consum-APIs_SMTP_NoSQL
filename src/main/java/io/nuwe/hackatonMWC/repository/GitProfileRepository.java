@@ -8,5 +8,5 @@ import io.nuwe.hackatonMWC.domain.GitProfile;
 @Repository
 public interface GitProfileRepository extends MongoRepository<GitProfile, String> {
 
-
+	public GitProfile getByUserId(String id);
 }
