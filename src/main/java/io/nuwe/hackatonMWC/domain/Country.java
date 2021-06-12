@@ -1,6 +1,5 @@
 package io.nuwe.hackatonMWC.domain;
 
-
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "country")
@@ -10,22 +9,13 @@ public class Country {
 	
 	private String name;
 	
-	private String[] alphaCode;
+	private String alpha2Code;
 	
-	private int callingCode;
+	private String alpha3Code;
+	
+	private String[] callingCodes;
 
 	public Country() {
-		alphaCode = new String[2];
-	}
-	
-	public Country(String id, String name, String alpha2Code, String alpha3Code, int callingCode) {
-		super();
-		this.id = id;
-		this.name = name;
-		alphaCode = new String[2];
-		alphaCode[0]= alpha2Code;
-		alphaCode[1]= alpha3Code;
-		this.callingCode = callingCode;
 	}
 
 	public String getId() {
@@ -45,32 +35,26 @@ public class Country {
 	}
 
 	public String getAlpha2Code() {
-		return alphaCode[0];
+		return alpha2Code;
 	}
 	
 	public String getAlpha3Code() {
-		return alphaCode[1];
+		return alpha3Code;
 	}
 
 	public void setAlpha2Code(String alphaCode) {
-		this.alphaCode[0] = alphaCode;
+		this.alpha2Code = alphaCode;
 	}
 	
 	public void setAlpha3Code(String alphaCode) {
-		this.alphaCode[1] = alphaCode;
-	}
-	
-	public void setAlphaCode(String[] alphaCode) {
-		this.alphaCode = alphaCode;
+		this.alpha3Code = alphaCode;
 	}
 
-	
-	public int getCallingCode() {
-		return callingCode;
+	public String[] getCallingCodes() {
+		return callingCodes;
 	}
 
-	public void setCallingCode(int callingCode) {
-		this.callingCode = callingCode;
+	public void setCallingCodes(String[] callingCodes) {
+		this.callingCodes = callingCodes;
 	}
-
 }

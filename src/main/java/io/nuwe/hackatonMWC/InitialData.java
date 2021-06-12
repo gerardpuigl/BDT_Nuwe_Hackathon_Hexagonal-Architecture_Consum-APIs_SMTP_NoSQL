@@ -6,11 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import io.nuwe.hackatonMWC.domain.Country;
 import io.nuwe.hackatonMWC.domain.GitProfile;
 import io.nuwe.hackatonMWC.domain.GitProfileType;
 import io.nuwe.hackatonMWC.domain.User;
-import io.nuwe.hackatonMWC.repository.CountryRepository;
 import io.nuwe.hackatonMWC.repository.GitProfileRepository;
 import io.nuwe.hackatonMWC.repository.UserRepository;
 
@@ -24,9 +22,6 @@ public class InitialData {
 	private GitProfileRepository gitProfileRepository;
 
 	@Autowired
-	private CountryRepository countryRepository;
-
-	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
 	@PostConstruct
@@ -36,9 +31,6 @@ public class InitialData {
 		User user2 = new User("60c4b7968c71c14b521ed76b", "TestUser02", "User02", "TestUser02@nuwe.io", true, passwordEncoder.encode("hackathonMWC"), "git2", "ES");
 		userRepository.save(user2);
 		userRepository.save(user1);
-		
-		Country spain = new Country("ES", "Spain", "ES", "ESP", 34);
-		countryRepository.save(spain);
 		
 		GitProfile gitProfile1 = new GitProfile("60c4dfffb8a5994017ddd300", "60c4b7968c71c14b521ed76a", "User01Git", "https://github.com/user01Git", GitProfileType.GITHUB, null, null);
 		GitProfile gitProfile2 = new GitProfile("60c4dfffb8a5994017ddd301", "60c4b7968c71c14b521ed76b", "User02Git", "https://github.com/user02Git", GitProfileType.GITHUB, null, null);
