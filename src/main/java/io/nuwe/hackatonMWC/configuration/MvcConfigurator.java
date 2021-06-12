@@ -14,12 +14,6 @@ public class MvcConfigurator implements WebMvcConfigurer {
 		super();
 	}
 
-	// Password encoder
-	@Bean
-	public PasswordEncoder encoder() { 
-	    return new BCryptPasswordEncoder();
-	}
-	
 	// model Maper Bean
 	@Bean
 	public ModelMapper modelMapper() {
