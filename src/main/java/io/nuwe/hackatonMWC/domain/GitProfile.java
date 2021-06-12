@@ -2,11 +2,13 @@ package io.nuwe.hackatonMWC.domain;
 
 import java.util.List;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "gitprofile")
 public class GitProfile {
 
+	@Id
 	private String id;
 	
 	private String userId;
@@ -48,7 +50,7 @@ public class GitProfile {
 		return userId;
 	}
 
-	public void seUsertId(String id) {
+	public void setUserId(String id) {
 		this.userId = id;
 	}
 

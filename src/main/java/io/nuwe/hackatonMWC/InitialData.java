@@ -40,8 +40,8 @@ public class InitialData {
 		Country spain = new Country("ES", "Spain", "ES", "ESP", 34);
 		countryRepository.save(spain);
 		
-		GitProfile gitProfile1 = new GitProfile("git1", "60c4b7968c71c14b521ed76a", "User01Git", "https://github.com/user01Git", GitProfileType.GITHUBUSER, null, null);
-		GitProfile gitProfile2 = new GitProfile("git2", "60c4b7968c71c14b521ed76b", "User02Git", "https://github.com/user02Git", GitProfileType.GITHUBUSER, null, null);
+		GitProfile gitProfile1 = new GitProfile("60c4dfffb8a5994017ddd300", "60c4b7968c71c14b521ed76a", "User01Git", "https://github.com/user01Git", GitProfileType.GITHUB, null, null);
+		GitProfile gitProfile2 = new GitProfile("60c4dfffb8a5994017ddd301", "60c4b7968c71c14b521ed76b", "User02Git", "https://github.com/user02Git", GitProfileType.GITHUB, null, null);
 		gitProfileRepository.save(gitProfile1);
 		gitProfileRepository.save(gitProfile2);
 		
