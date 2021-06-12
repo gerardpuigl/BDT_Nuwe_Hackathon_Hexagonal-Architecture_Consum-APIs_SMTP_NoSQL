@@ -74,31 +74,4 @@ public class UserController {
 		}
 	}
 	
-	@GetMapping("/{id}/gitlab")
-	public ResponseEntity<Object> getGitLabProfile(@PathVariable("id") String id) {
-		try {
-			GitProfile gitProfile = gitProfileService.getGitLabProfile(id);
-			if(gitProfile!=null) {
-				return new ResponseEntity<>(gitProfile, HttpStatus.OK);
-			}else{
-				return new ResponseEntity<>("The user don't have GitLabProfile.", HttpStatus.NOT_FOUND);
-			}
-		} catch (NoSuchElementException e) {
-			return new ResponseEntity<>("No user found with id: \n" + id, HttpStatus.UNPROCESSABLE_ENTITY);
-		}
-	}
-	
-	@GetMapping("/{id}/github")
-	public ResponseEntity<Object> getGitHubProfile(@PathVariable("id") String id) {
-		try {
-			GitProfile gitProfile = gitProfileService.getGitHubProfile(id);
-			if(gitProfile!=null) {
-				return new ResponseEntity<>(gitProfile, HttpStatus.OK);
-			}else{
-				return new ResponseEntity<>("The user don't have GitLabProfile.", HttpStatus.NOT_FOUND);
-			}
-		} catch (NoSuchElementException e) {
-			return new ResponseEntity<>("No user found with id: \n" + id, HttpStatus.UNPROCESSABLE_ENTITY);
-		}
-	}
 }
