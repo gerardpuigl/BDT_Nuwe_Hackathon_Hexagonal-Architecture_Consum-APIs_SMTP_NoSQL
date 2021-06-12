@@ -20,13 +20,34 @@ import io.nuwe.hackatonMWC.domain.User;
 import io.nuwe.hackatonMWC.dto.UserDTO;
 import io.nuwe.hackatonMWC.service.UserService;
 
-
 @RestController
 @RequestMapping("/user")
 public class UserController {
-	
+
 	@Autowired
 	UserService userService;
+
+	@PostMapping
+	public ResponseEntity<Object> newUser(@Valid @RequestBody User user) {
+		try {
+			UserDTO userDTO = userService.newUser(user);
+			return new ResponseEntity<>(userDTO, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>("The user cannot be created./n" + e.getMessage(),
+					HttpStatus.UNPROCESSABLE_ENTITY);
+		}
+	}
+	
+	@PutMapping("/{id}")
+	public ResponseEntity<Object> updateUser(@PathVariable("id") String id, @Valid @RequestBody User user) {
+		try {
+			UserDTO userDTO = userService.updateUser(user, id);
+			return new ResponseEntity<>(userDTO, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>("The user cannot be updated./n" + e.getMessage(),
+					HttpStatus.UNPROCESSABLE_ENTITY);
+		}
+	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Object> getUser(@PathVariable("id") String id) {
@@ -37,7 +58,7 @@ public class UserController {
 			return new ResponseEntity<>("No user found with id: " + id, HttpStatus.UNPROCESSABLE_ENTITY);
 		}
 	}
-	
+
 	@DeleteMapping("/{id}")
 	public ResponseEntity<String> deleteUser(@PathVariable("id") String id) {
 		try {
@@ -47,34 +68,4 @@ public class UserController {
 			return new ResponseEntity<>("No user found with id: " + id, HttpStatus.UNPROCESSABLE_ENTITY);
 		}
 	}
-	
-	@PutMapping("/{id}")
-	public ResponseEntity<Object> updateUser(@PathVariable("id") String id, @Valid @RequestBody User user) {
-		UserDTO userDTO = userService.updateUser(user,id);
-		return new ResponseEntity<>(userDTO, HttpStatus.OK);
-	}
-	
-	@PostMapping
-	public ResponseEntity<Object> newUser(@Valid @RequestBody User user) {
-		UserDTO userDTO = userService.newUser(user);
-		return new ResponseEntity<>(userDTO, HttpStatus.OK);
-	}
-	
-	//TODO  DELETE /user/:id
-	//Descripción: Se puede borrar objeto user a través de su ID
-
-	//TODO  PUT /user/:id
-    //Descripción: Se puede actualizar un usuario a través de su ID
-
-	//TODO  POST /user
-    //Descripción: Crea un usuario
-
-	//TODO  GET /user/:id/gitlab
-    //Description: Devuele los datos de usuario del modelo de githubUser entrando dándo el nombre de usuario gitlab
-
-	//TODO  GET /user/:id/github 
-	//Description: Devuele los datos de usuario del modelo de githubUser entrando dándo el nombre de usuario github
-	
-	
-	
 }
