@@ -27,7 +27,6 @@ public class RESTCountries {
 			.accept(MediaType.APPLICATION_JSON)
 			.retrieve()
 			.bodyToFlux(Country.class)
-			.filter(c->c.getCallingCodes().length > 1)
 			.buffer().blockLast();
 		SetIdWithCode2(countryList);
 	}
