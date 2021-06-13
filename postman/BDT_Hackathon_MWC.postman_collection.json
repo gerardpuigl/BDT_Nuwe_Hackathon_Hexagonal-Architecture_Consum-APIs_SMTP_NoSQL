@@ -1,0 +1,319 @@
+{
+	"info": {
+		"_postman_id": "951ae33f-0af6-4f09-a2e1-6cd2d359afaf",
+		"name": "BDT_Hackathon_MWC",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"{{username}}\",\r\n    \"password\":\"{{password}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/login",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User By Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/user/{{id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"user",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New User",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"TestUser03\",\n    \"username\":\"User01\",\n    \"email\":\"TestUser03@nuwe.io\",\n    \"isEmailVerified\":true,\n    \"password\":\"HackathonMWC\",\n    \"gitUserId\":\"1\",\n    \"countryId\":\"ES\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/user",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Modify User",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"TestUser01\",\n    \"username\":\"User01\",\n    \"email\":\"TestUser01@nuwe.io\",\n    \"isEmailVerified\":1,\n    \"password\":\"HackathonMWC\",\n    \"gitUserId\":\"1\",\n    \"countryId\":\"Ess\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/user/{{60c5c3acaa8932726f81ecfc}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"user",
+						"{{60c5c3acaa8932726f81ecfc}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Player By Id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/user/{{id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"user",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get GitlabProfile",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/user/{{id}}/gitlab",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"user",
+						"{{id}}",
+						"gitlab"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get GithubProfile",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/user/{{id}}/github",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"user",
+						"{{id}}",
+						"github"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post GitLabProfile",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"User01Git\",\r\n    \"url\": \"https://github.com/user01Git\",\r\n    \"repositories\": null,\r\n    \"repositoriesURL\": null\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/gitlab/{{id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"gitlab",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post GitHubProfile",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"User01Git\",\r\n    \"url\": \"https://github.com/user01Git\",\r\n    \"repositories\": null,\r\n    \"repositoriesURL\": null\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/github/{{id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"github",
+						"{{id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List of all countries from RestCountries",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{host}}/countries",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"countries"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{newAccessToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"//Take login,username & password defined in the enviroment",
+					"const tokenUrl = pm.environment.get(\"host\") + \"/login\";",
+					"",
+					"const username = pm.environment.get(\"username\");",
+					"",
+					"const password = pm.environment.get(\"password\");",
+					"",
+					"//build the request",
+					"const getTokenRequest = {",
+					"    url: tokenUrl,",
+					"    method: 'POST',",
+					"    header: { 'content-type': 'application/json' },",
+					"    body: {",
+					"        mode: 'raw',",
+					"        raw: JSON.stringify(",
+					"            {",
+					"            \"username\": username,",
+					"            \"password\": password ",
+					"            }",
+					"        )",
+					"    }",
+					"};",
+					"",
+					"//send the request and convert the token from they body and convert in newAccessToken Variable",
+					"pm.sendRequest(getTokenRequest, (err, response) => {",
+					"",
+					"  const jsonResponse = response.json();",
+					"",
+					"  const newAccessToken = jsonResponse.token;",
+					"",
+					"  pm.variables.set('newAccessToken', newAccessToken);",
+					"",
+					"});"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
