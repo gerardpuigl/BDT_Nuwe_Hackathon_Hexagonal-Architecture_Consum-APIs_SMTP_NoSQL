@@ -27,7 +27,7 @@ public class InitialData {
 	@PostConstruct
 	public void populate() {
 		
-		User user1 = new User("60c4b7968c71c14b521ed76a", "TestUser01", "User011", "TestUser01@nuwe.io", true, passwordEncoder.encode("hackathonMWC"), "git1", "ES");
+		User user1 = new User("60c4b7968c71c14b521ed76a", "TestUser01", "User01", "TestUser01@nuwe.io", true, passwordEncoder.encode("hackathonMWC"), "git1", "ES");
 		User user2 = new User("60c4b7968c71c14b521ed76b", "TestUser02", "User02", "TestUser02@nuwe.io", true, passwordEncoder.encode("hackathonMWC"), "git2", "ES");
 		userRepository.save(user2);
 		userRepository.save(user1);
@@ -36,7 +36,5 @@ public class InitialData {
 		GitProfile gitProfile2 = new GitProfile("60c4dfffb8a5994017ddd301", "60c4b7968c71c14b521ed76b", "User02Git", "https://github.com/user02Git", GitProfileType.GITHUB, null, null);
 		gitProfileRepository.save(gitProfile1);
 		gitProfileRepository.save(gitProfile2);
-		
 	};
-
 }

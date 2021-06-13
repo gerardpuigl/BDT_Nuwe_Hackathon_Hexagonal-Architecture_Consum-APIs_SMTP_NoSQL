@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.nuwe.hackatonMWC.domain.User;
 import io.nuwe.hackatonMWC.dto.UserDTO;
+import io.nuwe.hackatonMWC.exception.AlreadyExistsException;
 import io.nuwe.hackatonMWC.service.GitProfileService;
 import io.nuwe.hackatonMWC.service.UserService;
 
@@ -47,7 +48,7 @@ public class UserController {
 		try {
 			UserDTO userDTO = userService.updateUser(user, id);
 			return new ResponseEntity<>(userDTO, HttpStatus.OK);
-		} catch (NoSuchElementException e) {
+		} catch (Exception e) {
 			return new ResponseEntity<>("The user cannot be updated.",
 					HttpStatus.UNPROCESSABLE_ENTITY);
 		}
