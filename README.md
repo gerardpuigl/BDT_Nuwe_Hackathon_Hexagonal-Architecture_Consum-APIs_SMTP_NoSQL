@@ -15,6 +15,11 @@ Markup : <details>
 
 ----
 
+# Used technology
+- JAVA
+- SPRING
+- MONGODB
+
 # Deployment
 https://gerardpuigbdthackathonmwc.herokuapp.com/
 
