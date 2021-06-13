@@ -5,20 +5,15 @@ Desde cliente nos han pedido poder hacer una implementación de varias APIs y po
 El cliente quiere poder guardar los datos de sus usuarios y de las cuentas de Github, Gitlab y además poder comunicarse con ellos a través de un sistema de mensajería SMTP.
 
 El arquitecto propone el siguiente esquema:
-<p>
-  <img src="https://github.com/gerardpuigl/BDT_Hackathon_MWC/blob/main/schema/ArchitectureSchema.jpg" alt="java" title="java" width=100%/>
-</p>
+
+Markup : <details>
+           <summary>VER ESQUEMA</summary>
+            <p>
+               <img src="https://github.com/gerardpuigl/BDT_Hackathon_MWC/blob/main/schema/ArchitectureSchema.jpg" alt="java" title="java" width=100%/>
+             </p>
+         </details>
 
 ----
-
-# Stack Used
-
-<p align="left">
-  <img src="https://github.com/GerardPuigl/TechnologyStackIcons/blob/main/Logos/java.svg"  alt="java" height="35px"/>
-  <img src="https://github.com/GerardPuigl/TechnologyStackIcons/blob/main/Logos/spring-long.svg" title="spring-long" alt="spring-long" height="35px"/>
-  <img src="https://github.com/GerardPuigl/TechnologyStackIcons/blob/main/Logos/mongodb.svg" alt="mongodb" title="mongodb" height="35px">
-</p>
-
 
 # Deployment
 https://gerardpuigbdthackathonmwc.herokuapp.com/
