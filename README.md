@@ -20,11 +20,11 @@ https://gerardpuigbdthackathonmwc.herokuapp.com/
 
 # Testing
 
-En la carpeta Postman de este repositorio encontrara una colección completa de peticiones Postman y cuatro entornos para probar la aplicación en local o la desplegada en heroku y con las credenciales de autenticación correctas e incorrectas para testear la seguridad.
+En la carpeta Postman de este repositorio encontrará una colección completa de peticiones Postman y cuatro entornos para probar la aplicación en local o la desplegada en heroku y con las credenciales de autenticación correctas e incorrectas para testear la seguridad.
 
-Si quieres provar la aplicación en local debes canviar el perfil de la base de datos en "application.properties" a "mongodb-local". Y tener una base de datos de mongodb corriendo en el  "localhost:27017" o configurar-la correctament.
+Si quieres probar la aplicación en local debes cambiar el perfil de la base de datos en "application.properties" a "mongodb-local". Y tener una base de datos de mongodb corriendo en el "localhost:27017" o configurar-la correctamente.
 
-Disfurta de esta API.
+Disfruta de esta API.
 
 ### User taks | 
 
