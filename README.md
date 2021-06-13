@@ -11,7 +11,7 @@ El arquitecto propone el siguiente esquema:
 
 ----
 
-# Thech Stack Used
+# Stack Used
 
 <p align="left">
   <img src="https://github.com/GerardPuigl/TechnologyStackIcons/blob/main/Logos/java.svg"  alt="java" height="35px"/>
