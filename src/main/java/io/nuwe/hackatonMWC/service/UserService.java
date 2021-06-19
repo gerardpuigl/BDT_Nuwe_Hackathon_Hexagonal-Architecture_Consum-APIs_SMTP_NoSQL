@@ -9,6 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import io.nuwe.hackatonMWC.dto.UserDTO;
+import io.nuwe.hackatonMWC.email.EmailServiceImpl;
 import io.nuwe.hackatonMWC.exception.AlreadyExistsException;
 import io.nuwe.hackatonMWC.domain.User;
 import io.nuwe.hackatonMWC.repository.UserRepository;
@@ -26,6 +27,9 @@ public class UserService {
 		
 	@Autowired
 	ApiMailboxlayer apiMailboxlayer;
+	
+	@Autowired
+	EmailServiceImpl emailService;
 	
 	//To map entity to DTO.
 	@Autowired
@@ -47,6 +51,7 @@ public class UserService {
 		//encode Password
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		User userDB = userRepository.save(user);
+		emailService.sendWelcomeEmail(userDB);
 		return modelMapper.map(userDB, UserDTO.class);
 	}
 
