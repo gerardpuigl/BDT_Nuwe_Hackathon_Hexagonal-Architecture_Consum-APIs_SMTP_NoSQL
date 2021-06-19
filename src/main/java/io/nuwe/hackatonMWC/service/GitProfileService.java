@@ -4,53 +4,53 @@ import java.util.NoSuchElementException;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Service;
 
-import io.nuwe.hackatonMWC.domain.GitProfile;
-import io.nuwe.hackatonMWC.domain.GitProfileType;
-import io.nuwe.hackatonMWC.repository.GitProfileRepository;
+import io.nuwe.hackatonMWC.domain.User;
+import io.nuwe.hackatonMWC.dto.GithubDTO;
 import io.nuwe.hackatonMWC.repository.UserRepository;
+import io.nuwe.hackatonMWC.util.ApiGithub;
 
 
 @Service
 public class GitProfileService {
-		
-	@Autowired
-	private GitProfileRepository gitProfileRepository;
 	
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private ApiGithub apiGithub;
 
 	//To map entity to DTO.
 	@Autowired
 	ModelMapper modelMapper;
 
-	public GitProfile getGitLabProfile(String id) {
-		GitProfile gitProfile = gitProfileRepository.getByUserId(id);
-		if (gitProfile.getType().equals(GitProfileType.GITLAB)) return gitProfile;
+	public GithubDTO getGitLabProfile(String id) {
 		return null;
 	}
 	
-	public GitProfile getGitHubProfile(String id) {
-		GitProfile gitProfile = gitProfileRepository.getByUserId(id);
-		if (gitProfile.getType().equals(GitProfileType.GITHUB)) return gitProfile;
-		return null;
+	public GithubDTO getGitHubProfile(String id) throws NotFoundException {
+		User user = getUserById(id);
+		GithubDTO githubDTO = apiGithub.getGithubCredentials(user.getGithubUserId());
+		return githubDTO;
 	}
 
-	public GitProfile postGitLabProfile(GitProfile gitProfile, String id) {
-		if(!userRepository.existsById(id)) throw new NoSuchElementException();
-		gitProfile.setType(GitProfileType.GITLAB);
-		gitProfile.setUserId(id);
-		GitProfile gitProfileDB = gitProfileRepository.save(gitProfile);
-		return gitProfileDB;
+	public GithubDTO postGitLabProfile(String username, String id) {
+		return null;
 	}
 	
-	public GitProfile postGitHubProfile(GitProfile gitProfile, String id) {
+	public GithubDTO postGitHubProfile(String username, String id) throws NotFoundException {
+		User user = getUserById(id);
+		user.setGithubUserId(username);
+		GithubDTO githubDTO = apiGithub.getGithubCredentials(user.getGithubUserId());
+		return githubDTO;
+	}
+
+	public User getUserById(String id) {
 		if(!userRepository.existsById(id)) throw new NoSuchElementException();
-		gitProfile.setType(GitProfileType.GITHUB);
-		gitProfile.setUserId(id);
-		GitProfile gitProfileDB = gitProfileRepository.save(gitProfile);
-		return gitProfileDB;
+		User user = userRepository.findById(id).get();
+		return user;
 	}
 
 	

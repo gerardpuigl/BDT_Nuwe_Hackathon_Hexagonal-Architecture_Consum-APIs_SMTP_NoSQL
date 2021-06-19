@@ -30,7 +30,9 @@ public class User {
 	@NotBlank
 	private String password;
 	
-	private String gitUserId;
+	private String githubUserId;
+	
+	private String gitlabUserId;
 	
 	private String countryId;
 
@@ -38,14 +40,15 @@ public class User {
 	}
 	
 	public User(String id, String name, String username, @Email(message = "Email no valid.") String email,
-			boolean isEmailVerified, String password, String gitUserId, String countryId) {
+			boolean isEmailVerified, String password, String githubUserId, String gitlabUserId, String countryId) {
 		this.id = id;
 		this.name = name;
 		this.username = username;
 		this.email = email;
 		this.isEmailVerified = isEmailVerified;
 		this.password =  password;
-		this.gitUserId = gitUserId;
+		this.githubUserId = githubUserId;
+		this.gitlabUserId = gitlabUserId;
 		this.countryId = countryId;
 	}
 
@@ -97,12 +100,28 @@ public class User {
 		this.password = password;
 	}
 
-	public String getGitUserId() {
-		return gitUserId;
+	public boolean isEmailVerified() {
+		return isEmailVerified;
 	}
 
-	public void setGitUserId(String gitUserId) {
-		this.gitUserId = gitUserId;
+	public void setEmailVerified(boolean isEmailVerified) {
+		this.isEmailVerified = isEmailVerified;
+	}
+
+	public String getGithubUserId() {
+		return githubUserId;
+	}
+
+	public void setGithubUserId(String githubUserId) {
+		this.githubUserId = githubUserId;
+	}
+
+	public String getGitlabUserId() {
+		return gitlabUserId;
+	}
+
+	public void setGitlabUserId(String gitlabUserId) {
+		this.gitlabUserId = gitlabUserId;
 	}
 
 	public String getCountryId() {

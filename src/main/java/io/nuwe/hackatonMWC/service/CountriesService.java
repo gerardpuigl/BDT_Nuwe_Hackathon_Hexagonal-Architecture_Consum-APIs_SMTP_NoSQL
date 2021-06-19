@@ -6,17 +6,17 @@ import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import io.nuwe.hackatonMWC.domain.Country;
-import io.nuwe.hackatonMWC.util.RESTCountries;
+import io.nuwe.hackatonMWC.dto.CountryDTO;
+import io.nuwe.hackatonMWC.util.ApiRESTCountries;
 
 @Service
 public class CountriesService {
 
 	@Autowired
-	RESTCountries restCountries;
+	ApiRESTCountries restCountries;
 	
-	public List<Country> getCountriesList() {
-		List<Country> countriesList = restCountries.getCountryList();
+	public List<CountryDTO> getCountriesList() {
+		List<CountryDTO> countriesList = restCountries.getCountryList();
 		if(countriesList==null) throw new NoSuchElementException();
 		return countriesList;
 	}

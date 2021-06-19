@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.nuwe.hackatonMWC.domain.Country;
+import io.nuwe.hackatonMWC.dto.CountryDTO;
 import io.nuwe.hackatonMWC.service.CountriesService;
 
 
@@ -22,7 +22,7 @@ public class CountryController {
 	@GetMapping("/countries")
 	public ResponseEntity<Object> getCountriesList() {
 		try {
-			List<Country> countriesList = countriesService.getCountriesList();
+			List<CountryDTO> countriesList = countriesService.getCountriesList();
 			return new ResponseEntity<>(countriesList, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>("Cannot get country list.\n" + e.getMessage(),

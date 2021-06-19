@@ -10,12 +10,12 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import io.nuwe.hackatonMWC.domain.Country;
+import io.nuwe.hackatonMWC.dto.CountryDTO;
 
 @Component
-public class RESTCountries {
+public class ApiRESTCountries {
 
-	private List<Country> countryList;
+	private List<CountryDTO> countryList;
 	
     @Autowired
     WebClient webClient;
@@ -26,23 +26,23 @@ public class RESTCountries {
 			.uri("https://restcountries.eu/rest/v2/all")
 			.accept(MediaType.APPLICATION_JSON)
 			.retrieve()
-			.bodyToFlux(Country.class)
+			.bodyToFlux(CountryDTO.class)
 			.buffer().blockLast();
-		SetIdWithCode2(countryList);
+		setIdWithCode2(countryList);
 	}
     
-    private void SetIdWithCode2(List<Country> countryList) {
+    private void setIdWithCode2(List<CountryDTO> countryList) {
     	countryList.stream()
     	.peek(c->c.setId(c.getAlpha2Code()))
     	.collect(Collectors.toList());    	
     }
 
-	public List<Country> getCountryList() {
+	public List<CountryDTO> getCountryList() {
 		return countryList;
 	}
 	
-	public Country getById(String id) {
-		Country country = countryList.stream().filter(c->c.getId().equals("id")).findFirst().get();
+	public CountryDTO getById(String id) {
+		CountryDTO country = countryList.stream().filter(c->c.getId().equals("id")).findFirst().get();
 		return country;
 	}
 
