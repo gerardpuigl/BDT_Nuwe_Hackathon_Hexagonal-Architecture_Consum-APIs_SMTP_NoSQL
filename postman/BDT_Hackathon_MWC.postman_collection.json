@@ -73,7 +73,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\":\"TestUser03\",\n    \"username\":\"User01\",\n    \"email\":\"TestUser03@nuwe.io\",\n    \"isEmailVerified\":true,\n    \"password\":\"HackathonMWC\",\n    \"gitUserId\":\"1\",\n    \"countryId\":\"ES\"\n}\n",
+					"raw": "{\n    \"name\":\"TestUser03\",\n    \"username\":\"User01\",\n    \"email\":\"TestUser03@nuwe.io\",\n    \"isEmailVerified\":true,\n    \"password\":\"HackathonMWC\",\n    \"gitUserId\":\"1\",\n    \"githubUserId\": \"gagocarrilloedgar\",\n    \"gitlabUserId\": \"jack_smith\",\n    \"countryId\":\"ES\"\n}\n",
 					"options": {
 						"raw": {
 							"language": "json"
