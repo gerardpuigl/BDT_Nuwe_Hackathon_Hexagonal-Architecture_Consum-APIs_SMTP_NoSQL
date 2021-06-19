@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 
 import io.nuwe.hackatonMWC.domain.User;
 import io.nuwe.hackatonMWC.dto.GithubDTO;
+import io.nuwe.hackatonMWC.dto.GitlabDTO;
 import io.nuwe.hackatonMWC.repository.UserRepository;
 import io.nuwe.hackatonMWC.util.ApiGithub;
+import io.nuwe.hackatonMWC.util.ApiGitlab;
 
 
 @Service
@@ -21,13 +23,18 @@ public class GitProfileService {
 	
 	@Autowired
 	private ApiGithub apiGithub;
+	
+	@Autowired
+	private ApiGitlab apiGitlab;
 
 	//To map entity to DTO.
 	@Autowired
 	ModelMapper modelMapper;
 
-	public GithubDTO getGitLabProfile(String id) {
-		return null;
+	public GitlabDTO getGitLabProfile(String id) throws NotFoundException {
+		User user = getUserById(id);
+		GitlabDTO gitlabDTO = apiGitlab.getGitlabCredentials(user.getGitlabUserId());
+		return gitlabDTO;
 	}
 	
 	public GithubDTO getGitHubProfile(String id) throws NotFoundException {
@@ -36,8 +43,11 @@ public class GitProfileService {
 		return githubDTO;
 	}
 
-	public GithubDTO postGitLabProfile(String username, String id) {
-		return null;
+	public GitlabDTO postGitLabProfile(String username, String id) throws NotFoundException {
+		User user = getUserById(id);
+		user.setGithubUserId(username);
+		GitlabDTO gitlabDTO = apiGitlab.getGitlabCredentials(user.getGithubUserId());
+		return gitlabDTO;
 	}
 	
 	public GithubDTO postGitHubProfile(String username, String id) throws NotFoundException {

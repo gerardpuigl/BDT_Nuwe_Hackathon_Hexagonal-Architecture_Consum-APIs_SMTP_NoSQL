@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.nuwe.hackatonMWC.dto.GithubDTO;
+import io.nuwe.hackatonMWC.dto.GitlabDTO;
 import io.nuwe.hackatonMWC.service.GitProfileService;
 import io.nuwe.hackatonMWC.service.UserService;
 
@@ -27,14 +28,14 @@ public class GitProfileController {
 	@GetMapping("/gitlab")
 	public ResponseEntity<Object> getGitLabProfile(@PathVariable("id") String id) {
 		try {
-			GithubDTO gitProfile = null;
-			if (gitProfile != null) {
-				return new ResponseEntity<>(gitProfile, HttpStatus.OK);
+			GitlabDTO gitlabDto = gitProfileService.getGitLabProfile(id);
+			if (gitlabDto != null) {
+				return new ResponseEntity<>(gitlabDto, HttpStatus.OK);
 			} else {
 				return new ResponseEntity<>("The user don't have GitLabProfile.", HttpStatus.NOT_FOUND);
 			}
 		} catch (Exception e) {
-			return new ResponseEntity<>("No user found with id: \n" + id, HttpStatus.UNPROCESSABLE_ENTITY);
+			return new ResponseEntity<>("No user found with id: \n" + id + e.getMessage() , HttpStatus.UNPROCESSABLE_ENTITY);
 		}
 	}
 
