@@ -14,8 +14,10 @@ public class UserDTO {
 	private String email;
 	
 	private boolean isEmailVerified;
-		
-	private String gitUserId;
+	
+	private String githubUserId;
+	
+	private String gitlabUserId;
 	
 	private String countryId;
 		
@@ -62,12 +64,20 @@ public class UserDTO {
 		this.isEmailVerified = isEmailVerified;
 	}
 
-	public String getGitUserId() {
-		return gitUserId;
+	public String getGithubUserId() {
+		return githubUserId;
 	}
 
-	public void setGitUserId(String gitUserId) {
-		this.gitUserId = gitUserId;
+	public void setGithubUserId(String githubUserId) {
+		this.githubUserId = githubUserId;
+	}
+
+	public String getGitlabUserId() {
+		return gitlabUserId;
+	}
+
+	public void setGitlabUserId(String gitlabUserId) {
+		this.gitlabUserId = gitlabUserId;
 	}
 
 	public String getCountryId() {
