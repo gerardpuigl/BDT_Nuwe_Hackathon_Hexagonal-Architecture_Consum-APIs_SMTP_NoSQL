@@ -20,8 +20,4 @@ public class CountriesService {
 		if(countriesList==null) throw new NoSuchElementException();
 		return countriesList;
 	}
-
-
-
-
 }
