@@ -46,6 +46,7 @@ public class GitProfileService {
 	public GitlabDTO postGitLabProfile(String username, String id) throws NotFoundException {
 		User user = getUserById(id);
 		user.setGithubUserId(username);
+		userRepository.save(user);
 		GitlabDTO gitlabDTO = apiGitlab.getGitlabCredentials(user.getGithubUserId());
 		return gitlabDTO;
 	}
@@ -53,13 +54,15 @@ public class GitProfileService {
 	public GithubDTO postGitHubProfile(String username, String id) throws NotFoundException {
 		User user = getUserById(id);
 		user.setGithubUserId(username);
+		userRepository.save(user);
 		GithubDTO githubDTO = apiGithub.getGithubCredentials(user.getGithubUserId());
 		return githubDTO;
 	}
 
-	public User getUserById(String id) {
+	private User getUserById(String id) {
 		if(!userRepository.existsById(id)) throw new NoSuchElementException();
-		User user = userRepository.findById(id).get();
+		User user = userRepository.findById(id).
+				orElseThrow(() -> new NoSuchElementException("No user with this id: " + id));
 		return user;
 	}
 

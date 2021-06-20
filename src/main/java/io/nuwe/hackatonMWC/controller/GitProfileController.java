@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,7 +15,7 @@ import io.nuwe.hackatonMWC.service.GitProfileService;
 import io.nuwe.hackatonMWC.service.UserService;
 
 @RestController
-@RequestMapping("user/{id}")
+@RequestMapping("/user/{id}")
 public class GitProfileController {
 
 	@Autowired
@@ -56,7 +55,12 @@ public class GitProfileController {
 
 	@PostMapping("/gitlab/{username}")
 	public ResponseEntity<Object> postGitLabProfile(@PathVariable("id") String id, @PathVariable("username") String username) {
-			return null;
+		try {
+			GitlabDTO gitProfileDB = gitProfileService.postGitLabProfile(username, id);
+			return new ResponseEntity<>(gitProfileDB, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>("No user found with id: \n" + id, HttpStatus.UNPROCESSABLE_ENTITY);
+		}
 	}
 	
 	@PostMapping("/github/{username}")
