@@ -1,6 +1,9 @@
-package io.nuwe.hackatonMWC.security.jwtutils;
+package io.nuwe.hackatonMWC.security.controller;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -8,11 +11,17 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.nuwe.hackatonMWC.security.JwtUserDetailsService;
+import io.nuwe.hackatonMWC.domain.User;
+import io.nuwe.hackatonMWC.security.configuration.JwtUserDetailsService;
+import io.nuwe.hackatonMWC.security.jwtutils.JwtRequestModel;
+import io.nuwe.hackatonMWC.security.jwtutils.JwtResponseModel;
+import io.nuwe.hackatonMWC.security.jwtutils.TokenManager;
+import io.nuwe.hackatonMWC.service.UserService;
 
 /**
  * Controller for authentication
@@ -35,10 +44,13 @@ public class JwtController {
 
 	@Autowired
 	private TokenManager tokenManager;
+	
+	@Autowired
+	private UserService userService;
 
 	
 	@PostMapping("/login")
-	public ResponseEntity<JwtResponseModel> createToken(@RequestBody JwtRequestModel request) throws Exception {
+	public ResponseEntity<Object> createToken(@RequestBody JwtRequestModel request) throws Exception {
 
 		/**
 		 * AuthenticationManager class will take care of our authentication. We shall be
@@ -70,5 +82,20 @@ public class JwtController {
 		final String jwtToken = tokenManager.generateJwtToken(userDetails);
 		
 		return ResponseEntity.ok(new JwtResponseModel(jwtToken));
+	}
+	
+	@PostMapping("/register")
+	public ResponseEntity<Object> registerUser(@Valid @RequestBody User user) throws Exception {
+			
+		try {
+			userService.newUser(user);
+		} catch (Exception e) {
+			return new ResponseEntity<>("The user cannot be created.\n" + e.getMessage(),
+					HttpStatus.UNPROCESSABLE_ENTITY);
+		}
+			
+		JwtRequestModel request = new JwtRequestModel(user.getName(),user.getPassword());
+				
+		return createToken(request);
 	}
 }

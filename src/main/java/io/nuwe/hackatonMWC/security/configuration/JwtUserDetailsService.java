@@ -1,4 +1,4 @@
-package io.nuwe.hackatonMWC.security;
+package io.nuwe.hackatonMWC.security.configuration;
 
 import java.util.ArrayList;
 
@@ -26,11 +26,8 @@ public class JwtUserDetailsService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-		io.nuwe.hackatonMWC.domain.User userDB = userRepository.findByUsername(username);
-
-		if (userDB == null) {
-			throw new UsernameNotFoundException("User not found with username: " + username);
-		}
+		io.nuwe.hackatonMWC.domain.User userDB = userRepository.findByUsername(username)
+				.orElseThrow(()-> new UsernameNotFoundException("User not found with username: " + username));
 
 		return new User(userDB.getUsername(), userDB.getPassword(), new ArrayList<>());
 	}

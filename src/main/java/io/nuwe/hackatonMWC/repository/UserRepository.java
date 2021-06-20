@@ -1,5 +1,7 @@
 package io.nuwe.hackatonMWC.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
@@ -10,6 +12,7 @@ public interface UserRepository extends MongoRepository<User, String> {
 	
 	public User findByEmail(String email);
 
-	public User findByUsername(String username);
+	public Optional<User> findByUsername(String username);
 
+	public boolean existsByUsername(String username);
 }
