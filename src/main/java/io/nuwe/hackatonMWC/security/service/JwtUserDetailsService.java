@@ -1,4 +1,4 @@
-package io.nuwe.hackatonMWC.security.configuration;
+package io.nuwe.hackatonMWC.security.service;
 
 import java.util.ArrayList;
 

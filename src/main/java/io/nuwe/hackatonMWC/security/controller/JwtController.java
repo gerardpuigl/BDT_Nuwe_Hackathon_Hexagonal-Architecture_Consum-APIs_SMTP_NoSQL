@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.nuwe.hackatonMWC.domain.User;
-import io.nuwe.hackatonMWC.security.configuration.JwtUserDetailsService;
-import io.nuwe.hackatonMWC.security.jwtutils.JwtRequestModel;
-import io.nuwe.hackatonMWC.security.jwtutils.JwtResponseModel;
+import io.nuwe.hackatonMWC.security.entity.JwtRequestModel;
+import io.nuwe.hackatonMWC.security.entity.JwtResponseModel;
 import io.nuwe.hackatonMWC.security.jwtutils.TokenManager;
+import io.nuwe.hackatonMWC.security.service.JwtUserDetailsService;
 import io.nuwe.hackatonMWC.service.UserService;
 
 /**

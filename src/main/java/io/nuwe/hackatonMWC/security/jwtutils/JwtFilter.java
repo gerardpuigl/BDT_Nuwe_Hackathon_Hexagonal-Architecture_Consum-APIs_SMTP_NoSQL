@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import io.jsonwebtoken.ExpiredJwtException;
-import io.nuwe.hackatonMWC.security.configuration.JwtUserDetailsService;
+import io.nuwe.hackatonMWC.security.service.JwtUserDetailsService;
 
 
 @Component

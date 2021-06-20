@@ -21,6 +21,7 @@ import io.nuwe.hackatonMWC.domain.User;
 import io.nuwe.hackatonMWC.dto.UserDTO;
 import io.nuwe.hackatonMWC.service.GitProfileService;
 import io.nuwe.hackatonMWC.service.UserService;
+import io.nuwe.hackatonMWC.util.AuthenticationChecker;
 
 @RestController
 @RequestMapping("/user")
@@ -31,6 +32,9 @@ public class UserController {
 	
 	@Autowired
 	GitProfileService gitProfileService;
+	
+	@Autowired
+	AuthenticationChecker authenticationChecker;
 	
 	@PostMapping
 	public ResponseEntity<Object> newUser(@Valid @RequestBody User user) {
@@ -46,7 +50,7 @@ public class UserController {
 	@PutMapping("/{id}")
 	public ResponseEntity<Object> updateUser(Authentication auth, @PathVariable("id") String id, @Valid @RequestBody User user) {
 		try {
-			checkAuthAndId(auth, id);
+			authenticationChecker.checkAuthUserAndId(auth,id);
 						
 			UserDTO userDTO = userService.updateUser(user, id);
 			return new ResponseEntity<>(userDTO, HttpStatus.OK);
@@ -59,7 +63,8 @@ public class UserController {
 	@GetMapping("/{id}")
 	public ResponseEntity<Object> getUser(Authentication auth, @PathVariable("id") String id) {
 		try {
-			checkAuthAndId(auth, id);
+			authenticationChecker.checkAuthUserAndId(auth,id);
+			
 			UserDTO userDTO = userService.findUserById(id);
 			return new ResponseEntity<>(userDTO, HttpStatus.OK);
 		} catch (NoSuchElementException e) {
@@ -73,7 +78,8 @@ public class UserController {
 	@DeleteMapping("/{id}")
 	public ResponseEntity<String> deleteUser(Authentication auth, @PathVariable("id") String id) {
 		try {
-			checkAuthAndId(auth, id);
+			authenticationChecker.checkAuthUserAndId(auth,id);
+			
 			userService.deleteUserById(id);
 			return new ResponseEntity<>("User deleted correctly.", HttpStatus.OK);
 		} catch (NoSuchElementException e) {
@@ -82,13 +88,6 @@ public class UserController {
 			return new ResponseEntity<>("The user cannot be deleted.\n" + e.getMessage(),
 					HttpStatus.UNPROCESSABLE_ENTITY);
 		}
-	}
-	
-	private void checkAuthAndId(Authentication auth, String id) {
-		UserDTO userDTO = userService.findUserByUsername(auth.getName());
-
-		// Check if the the requested ID matches the authorized user or is admin.
-		if(!userDTO.getId().equals(id))throw new SecurityException("The Jwt and the id sent don't match");
 	}
 
 }
