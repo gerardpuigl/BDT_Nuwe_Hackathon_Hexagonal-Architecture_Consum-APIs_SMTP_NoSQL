@@ -1,4 +1,4 @@
-package io.nuwe.hackatonMWC.security;
+package io.nuwe.hackatonMWC.security.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -57,7 +57,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf()
+		http.cors().and().csrf()
 			.disable()
 			.authorizeRequests()
 			
@@ -65,7 +65,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.anyRequest()
 			.permitAll();
 		*/
-			.antMatchers("/login")
+			.antMatchers("/login","/register")
 			.permitAll()
 			.anyRequest()
 			.authenticated()

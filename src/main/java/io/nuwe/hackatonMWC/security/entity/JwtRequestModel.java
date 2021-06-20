@@ -1,4 +1,4 @@
-package io.nuwe.hackatonMWC.security.jwtutils;
+package io.nuwe.hackatonMWC.security.entity;
 
 import java.io.Serializable;
 

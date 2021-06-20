@@ -8,9 +8,6 @@
 		{
 			"name": "Login",
 			"request": {
-				"auth": {
-					"type": "noauth"
-				},
 				"method": "POST",
 				"header": [],
 				"body": {
@@ -29,6 +26,49 @@
 					],
 					"path": [
 						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"TestUser03\",\n    \"username\":\"User04\",\n    \"email\":\"gerardpuig31@hotmail.com\",\n    \"isEmailVerified\":true,\n    \"password\":\"HackathonMWC\",\n    \"gitUserId\":\"1\",\n    \"githubUserId\": \"gagocarrilloedgar\",\n    \"gitlabUserId\": \"jack_smith\",\n    \"countryId\":\"ES\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/register",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"register"
 					]
 				}
 			},
@@ -73,7 +113,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\":\"TestUser03\",\n    \"username\":\"User01\",\n    \"email\":\"TestUser03@nuwe.io\",\n    \"isEmailVerified\":true,\n    \"password\":\"HackathonMWC\",\n    \"gitUserId\":\"1\",\n    \"countryId\":\"ES\"\n}\n",
+					"raw": "{\n    \"name\":\"TestUser07\",\n    \"username\":\"User04\",\n    \"email\":\"gerardpuig31@hotmail.com\",\n    \"isEmailVerified\":true,\n    \"password\":\"HackathonMWC\",\n    \"gitUserId\":\"1\",\n    \"githubUserId\": \"gagocarrilloedgar\",\n    \"gitlabUserId\": \"jack_smith\",\n    \"countryId\":\"ES\"\n}\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -99,7 +139,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\":\"TestUser01\",\n    \"username\":\"User01\",\n    \"email\":\"TestUser01@nuwe.io\",\n    \"isEmailVerified\":1,\n    \"password\":\"HackathonMWC\",\n    \"gitUserId\":\"1\",\n    \"countryId\":\"Ess\"\n}",
+					"raw": "{\n    \"id\": \"60c4b7968c71c14b521ed76b\",\n    \"name\": \"TestUser02\",\n    \"username\": \"User02\",\n    \"email\": \"TestUser02@nuwe.io\",\n    \"isEmailVerified\": true,\n    \"password\":\"HackathonMWC\",\n    \"githubUserId\": \"gerardpuigl\",\n    \"gitlabUserId\": \"jack_smith\",\n    \"countryId\": \"ESS\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -107,13 +147,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}/user/{{60c5c3acaa8932726f81ecfc}}",
+					"raw": "{{host}}/user/{{id}}",
 					"host": [
 						"{{host}}"
 					],
 					"path": [
 						"user",
-						"{{60c5c3acaa8932726f81ecfc}}"
+						"{{id}}"
 					]
 				}
 			},
@@ -190,13 +230,15 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}/gitlab/{{id}}",
+					"raw": "{{host}}/user/{{id}}/gitlab/jack_smith",
 					"host": [
 						"{{host}}"
 					],
 					"path": [
+						"user",
+						"{{id}}",
 						"gitlab",
-						"{{id}}"
+						"jack_smith"
 					]
 				}
 			},
@@ -217,13 +259,15 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}/github/{{id}}",
+					"raw": "{{host}}/user/{{id}}/github/gerardpuigl",
 					"host": [
 						"{{host}}"
 					],
 					"path": [
+						"user",
+						"{{id}}",
 						"github",
-						"{{id}}"
+						"gerardpuigl"
 					]
 				}
 			},
@@ -280,7 +324,7 @@
 					"//build the request",
 					"const getTokenRequest = {",
 					"    url: tokenUrl,",
-					"    method: 'POST',",
+					"    method: 'post',",
 					"    header: { 'content-type': 'application/json' },",
 					"    body: {",
 					"        mode: 'raw',",

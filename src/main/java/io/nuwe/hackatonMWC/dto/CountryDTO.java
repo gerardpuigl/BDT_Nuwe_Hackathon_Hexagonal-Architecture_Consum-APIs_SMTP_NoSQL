@@ -1,9 +1,9 @@
-package io.nuwe.hackatonMWC.domain;
+package io.nuwe.hackatonMWC.dto;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "country")
-public class Country {
+public class CountryDTO {
 
 	private String id;
 	
@@ -15,7 +15,7 @@ public class Country {
 	
 	private String[] callingCodes;
 
-	public Country() {
+	public CountryDTO() {
 	}
 
 	public String getId() {
