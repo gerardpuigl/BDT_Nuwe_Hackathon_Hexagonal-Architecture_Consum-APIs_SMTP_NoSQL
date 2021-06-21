@@ -56,7 +56,7 @@ public class UserService {
 	public UserDTO newUser(User user) throws AlreadyExistsException, InvalidPropertiesFormatException {
 
 		// Check if the username is used.
-		checkUsername(user);
+		checkUsername(user.getUsername());
 
 		// Check email using MailboxLayer
 		apiMailboxlayer.checkEmail(user.getEmail());
@@ -79,7 +79,7 @@ public class UserService {
 				.orElseThrow(() -> new NoSuchElementException("No user with this id: " + id));
 
 		// Check if the user name is diferent and check if the new one is used.
-		if (!userDB.getName().equals(user.getName())) checkUsername(user);
+		if (!userDB.getName().equals(user.getName())) checkUsername(user.getUsername());
 
 		// Check email using MailboxLayer
 		apiMailboxlayer.checkEmail(user.getEmail());
@@ -91,8 +91,8 @@ public class UserService {
 		return modelMapper.map(user, UserDTO.class);
 	}
 
-	private void checkUsername(User user) throws AlreadyExistsException {
-		if (userRepository.existsByUsername(null))
+	private void checkUsername(String username) throws AlreadyExistsException {
+		if (userRepository.existsByUsername(username))
 			throw new AlreadyExistsException("Username already in use.");
 	}
 

@@ -15,13 +15,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.nuwe.hackatonMWC.application.dto.UserDTO;
 import io.nuwe.hackatonMWC.application.security.entity.JwtRequestModel;
 import io.nuwe.hackatonMWC.application.security.entity.JwtResponseModel;
 import io.nuwe.hackatonMWC.application.security.jwtutils.TokenManager;
 import io.nuwe.hackatonMWC.application.security.service.JwtUserDetailsService;
 import io.nuwe.hackatonMWC.domain.entities.User;
-import io.nuwe.hackatonMWC.domain.repository.IUserRepository;
 import io.nuwe.hackatonMWC.infraestructure.services.UserService;
 
 /**
@@ -48,10 +46,6 @@ public class JwtController {
 	
 	@Autowired
 	private UserService userService;
-	
-	@Autowired
-	private IUserRepository userRepository;
-
 	
 	@PostMapping("/login")
 	public ResponseEntity<Object> createToken(@RequestBody JwtRequestModel request) throws Exception {
@@ -90,7 +84,7 @@ public class JwtController {
 	
 	@PostMapping("/register")
 	public ResponseEntity<Object> registerUser(@Valid @RequestBody User user) throws Exception {
-		JwtRequestModel request = new JwtRequestModel(user.getName(),user.getPassword());
+		JwtRequestModel request = new JwtRequestModel(user.getUsername(),user.getPassword());
 		try {
 			userService.newUser(user);
 		} catch (Exception e) {
