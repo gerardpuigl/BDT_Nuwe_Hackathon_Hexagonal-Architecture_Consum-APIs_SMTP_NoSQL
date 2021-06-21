@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.nuwe.hackatonMWC.application.dto.UserDTO;
-import io.nuwe.hackatonMWC.application.security.AuthenticationChecker;
 import io.nuwe.hackatonMWC.domain.entities.User;
+import io.nuwe.hackatonMWC.infraestructure.security.AuthenticationChecker;
 import io.nuwe.hackatonMWC.infraestructure.services.GitProfileService;
 import io.nuwe.hackatonMWC.infraestructure.services.UserService;
 
@@ -59,7 +59,7 @@ public class UserController {
 					HttpStatus.UNPROCESSABLE_ENTITY);
 		}
 	}
-
+	
 	@GetMapping("/{id}")
 	public ResponseEntity<Object> getUser(Authentication auth, @PathVariable("id") String id) {
 		try {
@@ -74,6 +74,22 @@ public class UserController {
 					HttpStatus.UNPROCESSABLE_ENTITY);
 		}
 	}
+	
+	@GetMapping("/{username}/name")
+	public ResponseEntity<Object> getUserByName(Authentication auth, @PathVariable("username") String username) {
+		try {
+			authenticationChecker.checkAuthUserAndUsername(auth,username);
+			
+			UserDTO userDTO = userService.findUserByUsername(username);
+			return new ResponseEntity<>(userDTO, HttpStatus.OK);
+		} catch (NoSuchElementException e) {
+			return new ResponseEntity<>("No user found with username: " + username , HttpStatus.UNPROCESSABLE_ENTITY);
+		} catch (Exception e) {
+			return new ResponseEntity<>("The user cannot be found.\n" + e.getMessage(),
+					HttpStatus.UNPROCESSABLE_ENTITY);
+		}
+	}
+
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<String> deleteUser(Authentication auth, @PathVariable("id") String id) {
