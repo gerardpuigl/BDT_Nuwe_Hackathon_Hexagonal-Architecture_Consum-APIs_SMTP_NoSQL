@@ -1,37 +1,551 @@
-# Reto backend Hackathon MWC done by Nuwe & BDT
+# Hackathon Individual MWC Reto backend by Nuwe & BDT
 
+Desde cliente nos han pedido poder hacer una implementación de varias APIs y poder simplificar la respuesta.
+
+El cliente quiere poder guardar los datos de sus usuarios y de las cuentas de Github, Gitlab y además poder comunicarse con ellos a través de un sistema de mensajería SMTP.
+
+El arquitecto propone el siguiente esquema:
+
+<details>
+    <summary>VER ESQUEMA</summary>
+        <img src="https://github.com/gerardpuigl/BDT_Hackathon_MWC/blob/main/schema/ArchitectureSchema.jpg" alt="java" title="java" width=100%/>
+</details>
+ 
+ ----
+
+## Tecnologias utilizadas
+- JAVA
+- SPRING
+- MONGODB
+
+## APIS implementadas
+
+- [RESTCountries](https://restcountries.eu/)
+- [Mailboxlayer](https://mailboxlayer.com/)
+- [GitHub API](https://docs.github.com/es/rest)
+- [Gitlab API](https://docs.gitlab.com/ee/api/)
+
+## URL
+https://gerardpuigbdthackathonmwc.herokuapp.com/
+
+ ----
+
+# Endopoints
+
+
+## Register New User
+- **Descripción**: Registra al usuario y lo guarda, devuelve un Token JWT. Se gestionan la sesión usando una estratégia remota enviando y recibiendo JWT.
+- **AUTH** : No necesita authenticación
+- **Method & Path**: `[POST] /register `
+- **REQUEST BODY**
+
+ALL information:
+```javascript
+{
+    "name":"TestUser03",
+    "username":"User07",
+    "email":"example@gmail.com",
+    "isEmailVerified":true,
+    "password":"hackathonMWC",
+    "gitUserId":"1",
+    "githubUserId": "gagocarrilloedgar",
+    "gitlabUserId": "jack_smith",
+    "countryId":"ES"
+}
+```
+MANDATORY information:
+```javascript
+{
+    "username":"User03",
+    "email":"example@gmail.com",
+    "password":"hackathonMWC"
+}
+```
+
+<details>
+    <summary>More information</summary>
+           
+- **SUCCESS RESPONSE: [Status = 200]**
+           
+```javascript
+{
+    "token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJVc2VyMDciLCJleHAiOjE2MjQzMTY2MTAsImlhdCI6MTYyNDI4MDYxMH0.iEDq_LMvWvqkyXXZjgy4zfeIsfXpauPm0FlQLPoKUfVOqRsor8hCdn5f5a1l8b4qr6H7hy8NcrVbRpZ6W47fZg"
+}
+```
+
+- **ERROR RESPONSE: [Status = 422]**
+```postman
+    The user cannot be created.
+    rawPassword cannot be null
+```
+```postman
+    The user cannot be created.
+    The email: null hasn't valid format
+```
+```postman
+    The user cannot be created.
+    The email: aaa@aaa.com domain don't exist
+```
+
+</details>
+
+## Login
+- **Descripción**: Registra al usuario y lo, guarda la sesión usando una estratégia remota y envía la información del usuario en JWT.
+- **AUTH** : No necesita authenticación
+- **Method & Path**: `[POST] /login `
+- **REQUEST BODY**
+```javascript
+{
+    "username":"{{username}}",
+    "password":"{{password}}"
+}
+```
+           
+<details>
+    <summary>More information</summary>
+           
+- **SUCCESS RESPONSE: [Status = 200]** 
+```javascript
+{
+    "token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJVc2VyMDciLCJleHAiOjE2MjQzMTY2MTAsImlhdCI6MTYyNDI4MDYxMH0.iEDq_LMvWvqkyXXZjgy4zfeIsfXpauPm0FlQLPoKUfVOqRsor8hCdn5f5a1l8b4qr6H7hy8NcrVbRpZ6W47fZg"
+}
+```
+
+- **ERROR RESPONSE: [Status = 401]**
+```postman
+{
+    "timestamp": 1624280812684,
+    "status": 401,
+    "error": "Unauthorized",
+    "trace":
+
+    etc.
+}
+```
+           
+</details>
+
+## Respuesta para los enpoinds si falla la autenticación:
+
+- **ERROR REPONSE: 401**
+```
+{
+    "timestamp": xxxxxxxxxx,
+    "status": 401,
+    "error": "Unauthorized",
+    "message": "Unauthorized",
+    "path": "/xxxx/xxx"
+}
+```
+
+## Get user by id
+- **Descripción**: Obtiene el objeto entero de un usuario
+- **AUTH** : Necesitas enviar un Jwt Token en el header. Solo puedes obtener información de tu propio usuario.
+- **Method & Path**: `[GET] /user/:id `
+- **Path Parameter**: `id=[String]`
+
+<details>
+    <summary>More information</summary>
+           
+- **SUCCESS RESPONSE: [Status = 200]** 
+```javascript
+{
+    "id": "60c4b7968c71c14b521ed76b",
+    "name": "TestUser02",
+    "username": "User02",
+    "email": "TestUser02@nuwe.io",
+    "isEmailVerified": true,
+    "githubUserId": "gerardpuigl",
+    "gitlabUserId": "jack_smith",
+    "countryId": "ES"
+}
+```
+- **ERROR RESPONSE: [Status = 422]**
+```postman
+    The user cannot be found.
+    The Jwt User and id sent don't match
+```
+</details>
+
+## Update user by id
+- **Descripción**: Se puede actualizar un usuario a través de su ID
+- **AUTH** : Necesitas enviar un Jwt Token en el header. Solo puedes actualizar tu propio usuario.
+- **Method & Path**: `[PUT] /user/:id `
+- **Path Parameter**: `id=[String]`
+- **REQUEST BODY** 
+```javascript
+{
+    "id": "60c4b7968c71c14b521ed76b",
+    "name": "UpdateName02",
+    "username": "User02",
+    "email": "TestUser02@nuwe.io",
+    "isEmailVerified": true,
+    "password":"hackathonMWC",
+    "githubUserId": "gerardpuigl",
+    "gitlabUserId": "",
+    "countryId": "ES"
+}
+```
+           
+<details>
+    <summary>More information</summary>
+
+- **SUCCESS RESPONSE: [Status = 200]** 
+```javascript
+{
+    "id": "60c4b7968c71c14b521ed76b",
+    "name": "TestUser02",
+    "username": "User02",
+    "email": "TestUser02@nuwe.io",
+    "isEmailVerified": true,
+    "githubUserId": "gerardpuigl",
+    "gitlabUserId": "jack_smith",
+    "countryId": "ES"
+}
+```
+- **ERROR RESPONSE: [Status = 422]**
+```postman
+    The user cannot be updated.
+    The id in the path is different from id defined inside the Json
+```
+
+</details>
+
+## Create user by id
+- **Descripción**: Crea un usuario
+- **AUTH** : Necesitas enviar un Jwt Token en el header.
+- **Method & Path**: `[POST] /user/:id `
+- **Path Parameter**: `id=[String]`
+- **REQUEST BODY**
+
+MANDATORY information:
+```javascript
+{
+    "username":"User03",
+    "email":"example@gmail.com",
+    "password":"hackathonMWC"
+}
+```
+
+ALL information:
+```javascript
+{
+    "name":"TestUser03",
+    "username":"User03",
+    "email":"example@gmail.com",
+    "isEmailVerified":true,
+    "password":"hackathonMWC",
+    "gitUserId":"1",
+    "githubUserId": "gerardpuigl",
+    "gitlabUserId": "jack_smith",
+    "countryId":"ES"
+}
+```
+
+<details>
+    <summary>More information</summary>
+
+- **SUCCESS RESPONSE: [Status = 200]** 
+```javascript
+{
+    "id": "60d0889332cf106edb17ac13",
+    "name": "TestUser03",
+    "username": "User03",
+    "email": "example@gmail.com",
+    "isEmailVerified": true,
+    "githubUserId": "gerardpuigl",
+    "gitlabUserId": "jack_smith",
+    "countryId": "ES"
+}
+```
+or
+```javascript
+{
+    "id": "60d0899e32cf106edb17ac16",
+    "username": "User09",
+    "email": "example@gmail.com",
+    "isEmailVerified": false
+}
+```
+- **ERROR RESPONSE: [Status = 422]**
+```postman
+    The user cannot be updated.
+    The id in the path is different from id defined inside the Json
+```
+```postman
+    The user cannot be created.
+    rawPassword cannot be null
+```
+```postman
+    The user cannot be created.
+    The email: null hasn't valid format
+```
+```postman
+    The user cannot be created.
+    The email: aaa@aaa.com domain don't exist
+```
+
+</details>
+
+## Delete user by id
+- **Descripción**: Se puede borrar objeto user a través de su ID
+- **AUTH** : Necesitas enviar un Jwt Token en el header. Solo puedes eliminar tu propio usuario.
+- **Method & Path**: `[DELETE] /user/:id `
+- **Path Parameter**: `id=[String]`
+           
+<details>
+    <summary>More information</summary>
+
+- **SUCCESS RESPONSE: [Status = 200]** 
+```postman
+    User deleted correctly.
+```
+- **ERROR RESPONSE: [Status = 422]**
+```postman
+    The user cannot be found.
+    The Jwt User and id sent don't match
+```
+
+</details>
+
+## Get Gitlab user info:
+- **Descripción**: Devuele los datos de usuario del modelo de githubUser entrando dándo el nombre de usuario gitlab
+- **AUTH** : Necesitas enviar un Jwt Token en el header. Solo puedes obtener información de tu propio usuario.
+- **Method & Path**: `[GET] /user/:id/gitlab `
+- **Path Parameter**: `id=[String]`
+
+<details>
+    <summary>More information</summary>
+           
+- **SUCCESS RESPONSE: [Status = 200]** 
+```javascript
+{
+    "id": "5023502",
+    "name": "Jack Smith ",
+    "web_url": "https://gitlab.com/jack_smith",
+    "repositoriesURL": "https://gitlab.com/users/jack_smith/projects",
+    "repositories": [
+        {
+            "id": 15532034,
+            "name": "My Awesome Project",
+            "description": "This is my Test Project ",
+            "web_url": "https://gitlab.com/jack_smith/my-awesome-project"
+        }
+    ]
+}
+```
+- **ERROR RESPONSE: [Status = 422]**
+```postman
+    The user cannot be found.
+    The Jwt User and id sent don't match
+```
+```postman
+    No user found with id: 
+    60c4b7968c71c14b521ed76b403 Forbidden from GET https://gitlab.com/api/v4/users?username=
+```
+
+</details>
+
+## Get Github user info:
+- **Descripción**: Devuele los datos de usuario del modelo de githubUser entrando dándo el nombre de usuario github  
+- **AUTH** : Necesitas enviar un Jwt Token en el header. Solo puedes obtener información de tu propio usuario.
+- **Method & Path**: `[GET] /user/:id/github `
+- **Path Parameter**: `id=[String]`
+
+           
+<details>
+    <summary>More information</summary>
+
+- **SUCCESS RESPONSE: [Status = 200]** 
+```javascript
+{
+    "id": "72300632",
+    "name": "Gerard Puig",
+    "url": "https://api.github.com/users/gerardpuigl",
+    "repos_url": "https://api.github.com/users/gerardpuigl/repos",
+    "repositories": [
+        {
+            "id": 376239834,
+            "name": "BDT_Hackathon_MWC",
+            "description": null,
+            "html_url": "https://github.com/gerardpuigl/BDT_Hackathon_MWC"
+        },
+    ...etc
+```
+- **ERROR RESPONSE: [Status = 422]**
+```postman
+    The user cannot be found.
+    The Jwt User and id sent don't match
+```
+```postman
+    404 Not Found from GET https://api.github.com/users/
+```
+
+</details>
+
+## Post Gitlab user into User
+- **Descripción**: Crea un GithubUserl, lo conecta con un usuario previamante creado a través de su id y guarda el User
+- **AUTH** : Necesitas enviar un Jwt Token en el header. Solo puedes actualizar tu propio usuario.
+- **Method & Path**: `[POST] /user/:id/gitlab/:username `
+- **Path Parameter**: `id=[String] & username=[String]`
+
+<details>
+    <summary>More information</summary>
+
+- **SUCCESS RESPONSE: [Status = 200]** 
+```javascript
+{
+    "id": "5023502",
+    "name": "Jack Smith ",
+    "web_url": "https://gitlab.com/jack_smith",
+    "repositoriesURL": "https://gitlab.com/users/jack_smith/projects",
+    "repositories": [
+        {
+            "id": 15532034,
+            "name": "My Awesome Project",
+            "description": "This is my Test Project ",
+            "web_url": "https://gitlab.com/jack_smith/my-awesome-project"
+        }
+    ]
+}
+```
+- **ERROR RESPONSE: [Status = 422]**
+```postman
+    The user cannot be found.
+    The Jwt User and id sent don't match
+```
+```postman
+    No user found with id: 
+    60c4b7968c71c14b521ed76b403 Forbidden from GET https://gitlab.com/api/v4/users?username=
+```
+
+</details>
+
+## Post Github user into User
+- **Descripción**: Crea un GitlabUser, lo conecta con un usuario previamante creado a través de su id y guarda el User
+- **AUTH** : Necesitas enviar un Jwt Token en el header. Solo puedes actualizar tu propio usuario.
+- **Method & Path**: `[POST] /user/:id/gitlab/:username `
+- **Path Parameter**: `id=[String] &
+ username=[String]`
+
+<details>
+    <summary>More information</summary>
+
+- **SUCCESS RESPONSE: [Status = 200]** 
+```javascript
+{
+    "id": "72300632",
+    "name": "Gerard Puig",
+    "url": "https://api.github.com/users/gerardpuigl",
+    "repos_url": "https://api.github.com/users/gerardpuigl/repos",
+    "repositories": [
+        {
+            "id": 376239834,
+            "name": "BDT_Hackathon_MWC",
+            "description": null,
+            "html_url": "https://github.com/gerardpuigl/BDT_Hackathon_MWC"
+        },
+    ...etc
+```
+- **ERROR RESPONSE: [Status = 422]**
+```postman
+    The user cannot be found.
+    The Jwt User and id sent don't match
+```
+```postman
+    404 Not Found from GET https://api.github.com/users/
+```
+
+</details>
+
+## Country List:
+- **Descripción**: Devuele la lista de paises donde los parámetros que devuelo son los que se muestran en el diseño de la arquitectura
+- **AUTH** : Necesitas enviar un Jwt Token en el header.
+- **Method & Path**: `[GET] /contries`
+
+<details>
+    <summary>More information</summary>
+           
+- **SUCCESS RESPONSE: [Status = 200]** 
+```javascript
+{
+[
+    {
+        "id": "AF",
+        "name": "Afghanistan",
+        "alpha2Code": "AF",
+        "alpha3Code": "AFG",
+        "callingCodes": [
+            "93"
+        ]
+    },
+...etc
+```
+- **ERROR RESPONSE: [Status = 422]**
+```postman
+    The user cannot be found.
+    The Jwt User and id sent don't match
+```
+```postman
+    404 Not Found from GET https://api.github.com/users/
+```
+
+</details>
+
+## Notification to User by Id
+- **Descripción**: Envía un email de notificación standar al usuario 
+- **AUTH** : No necesita authenticación
+- **Method & Path**: `[POST] /user/:id/notification `
+- **Path Parameter**: `id=[String]`
+           
+<details>
+    <summary>More information</summary>
+           
+- **SUCCESS RESPONSE: [Status = 200]** 
+```postman
+
+    Email sent to user id: 60c4b7968c71c14b521ed76b
+
+```
+
+- **ERROR RESPONSE: [Status = 401]**
+```postman
+    Email can't be sent.
+    No user with this id: xxxxxxxxx
+```
+</details>
+
+----
+
+# Testing
+
+En la carpeta Postman de este repositorio encontrará una colección completa de peticiones y cuatro entornos para probar con las credenciales de autenticación correctas e incorrectas para testear la seguridad i para la aplicación en local o la desplegada en heroku.
+
+Disfruta de esta API.
+
+----
+
+<details>
+    <summary>VER ENUNCIADO</summary>
+
+
+### Enunciado | 
 Desde cliente nos han pedido poder hacer una implementación de varias APIs y poder simplificar la respuesta y el eso de estas.
 
 El cliente quiere poder guardar los datos de sus usuarios y de las cuentas de Github, Gitlab y además poder comunicarse con ellos a través de un sistema de mensajería SMTP.
 
 El arquitecto propone el siguiente esquema:
 
-Markup : <details>
+<details>
            <summary>VER ESQUEMA</summary>
             <p>
                <img src="https://github.com/gerardpuigl/BDT_Hackathon_MWC/blob/main/schema/ArchitectureSchema.jpg" alt="java" title="java" width=100%/>
-             </p>
+            </p>
          </details>
 
 ----
 
-# Used technology
-- JAVA
-- SPRING
-- MONGODB
-
-# Deployment
-https://gerardpuigbdthackathonmwc.herokuapp.com/
-
-# Testing
-
-En la carpeta Postman de este repositorio encontrará una colección completa de peticiones Postman y cuatro entornos para probar la aplicación en local o la desplegada en heroku y con las credenciales de autenticación correctas e incorrectas para testear la seguridad.
-
-Si quieres probar la aplicación en local debes cambiar el perfil de la base de datos en "application.properties" a "mongodb-local". Y tener una base de datos de mongodb corriendo en el "localhost:27017" o configurar-la correctamente.
-
-Disfruta de esta API.
-
-### User taks | 
+### TAREAS | 
 
 - **TASK1:** Puedo acceder a la api a través de: "http://localhost:3000" [DONE]
 - **TASK2:** Contiene los siguientes end points:
@@ -74,13 +588,12 @@ Disfruta de esta API.
 - **DOD-2:** Se han testado los diferentes endpoints de alguna forma: Testing (Unit, Integracióin, E2E) o Postman/Inmsomia [DONE]
 - **DOD-3:** Tiene que estar desarrollado en NodeJS o Java [DONE]
 
----
+----
 
 ### Reglas y recomendaciones 
 
 - Si se detectan posibles plagios y copias se descalificará automáticamente a la persona
 - Recomendable utilizar clean code y clean architecture
-
 
 ### Recursos
 - [Naming Cheatsheet](https://github.com/gagocarrilloedgar/naming-cheatsheet)
@@ -99,3 +612,7 @@ Disfruta de esta API.
     - [Digital Ocean](https://www.digitalocean.com/)
     - [OVH Cloud](https://www.ovh.es/)
     - [Google Cloud](https://cloud.google.com/)
+
+</details>
+
+----
