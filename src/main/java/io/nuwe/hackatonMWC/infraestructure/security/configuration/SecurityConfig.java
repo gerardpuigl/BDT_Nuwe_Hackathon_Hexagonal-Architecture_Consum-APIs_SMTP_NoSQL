@@ -1,4 +1,4 @@
-package io.nuwe.hackatonMWC.application.security.configuration;
+package io.nuwe.hackatonMWC.infraestructure.security.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -13,8 +13,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import io.nuwe.hackatonMWC.application.security.jwtutils.JwtAuthenticationEntryPoint;
-import io.nuwe.hackatonMWC.application.security.jwtutils.JwtFilter;
+import io.nuwe.hackatonMWC.infraestructure.security.jwtutils.JwtAuthenticationEntryPoint;
+import io.nuwe.hackatonMWC.infraestructure.security.jwtutils.JwtFilter;
 
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {

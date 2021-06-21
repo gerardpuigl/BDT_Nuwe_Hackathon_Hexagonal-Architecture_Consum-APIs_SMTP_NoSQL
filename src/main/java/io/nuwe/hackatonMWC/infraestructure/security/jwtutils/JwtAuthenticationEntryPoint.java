@@ -1,4 +1,4 @@
-package io.nuwe.hackatonMWC.application.security.jwtutils;
+package io.nuwe.hackatonMWC.infraestructure.security.jwtutils;
 
 import java.io.IOException;
 import java.io.Serializable;

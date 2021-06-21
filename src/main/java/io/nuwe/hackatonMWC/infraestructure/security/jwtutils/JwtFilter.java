@@ -1,4 +1,4 @@
-package io.nuwe.hackatonMWC.application.security.jwtutils;
+package io.nuwe.hackatonMWC.infraestructure.security.jwtutils;
 
 import java.io.IOException;
 
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import io.jsonwebtoken.ExpiredJwtException;
-import io.nuwe.hackatonMWC.application.security.service.JwtUserDetailsService;
+import io.nuwe.hackatonMWC.infraestructure.security.service.JwtUserDetailsService;
 
 
 @Component

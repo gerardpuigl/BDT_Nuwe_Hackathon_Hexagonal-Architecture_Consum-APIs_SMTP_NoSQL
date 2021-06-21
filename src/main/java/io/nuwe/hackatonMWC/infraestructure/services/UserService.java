@@ -9,11 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import io.nuwe.hackatonMWC.application.apis.ApiMailboxlayer;
 import io.nuwe.hackatonMWC.application.dto.UserDTO;
-import io.nuwe.hackatonMWC.application.email.EmailServiceImpl;
-import io.nuwe.hackatonMWC.application.util.ApiMailboxlayer;
 import io.nuwe.hackatonMWC.domain.entities.User;
 import io.nuwe.hackatonMWC.domain.repository.IUserRepository;
+import io.nuwe.hackatonMWC.infraestructure.email.EmailService;
 import io.nuwe.hackatonMWC.infraestructure.exceptions.AlreadyExistsException;
 
 @Service
@@ -29,7 +29,7 @@ public class UserService {
 	ApiMailboxlayer apiMailboxlayer;
 
 	@Autowired
-	EmailServiceImpl emailService;
+	EmailService emailService;
 
 	// To map entity to DTO.
 	@Autowired
@@ -72,14 +72,14 @@ public class UserService {
 	public UserDTO updateUser(User user, String id) throws AlreadyExistsException, InvalidPropertiesFormatException {
 
 		// Check if path id is equal than user.id
-		if (!user.getId().equals(id)) throw new InputMismatchException("The path is diferent from id in Json");
+		if (!user.getId().equals(id)) throw new InputMismatchException("The id in the path is different from id defined inside the Json");
 		
 		// Check if user exist & get it
 		User userDB = userRepository.findById(id)
 				.orElseThrow(() -> new NoSuchElementException("No user with this id: " + id));
 
 		// Check if the user name is diferent and check if the new one is used.
-		if (!userDB.getName().equals(user.getName())) checkUsername(user.getUsername());
+		if (!userDB.getUsername().equals(user.getUsername())) checkUsername(user.getUsername());
 
 		// Check email using MailboxLayer
 		apiMailboxlayer.checkEmail(user.getEmail());

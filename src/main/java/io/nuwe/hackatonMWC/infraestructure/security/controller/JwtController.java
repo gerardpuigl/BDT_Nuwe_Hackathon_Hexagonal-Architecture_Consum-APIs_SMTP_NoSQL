@@ -1,4 +1,4 @@
-package io.nuwe.hackatonMWC.application.security.controller;
+package io.nuwe.hackatonMWC.infraestructure.security.controller;
 
 import javax.validation.Valid;
 
@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.nuwe.hackatonMWC.application.security.entity.JwtRequestModel;
-import io.nuwe.hackatonMWC.application.security.entity.JwtResponseModel;
-import io.nuwe.hackatonMWC.application.security.jwtutils.TokenManager;
-import io.nuwe.hackatonMWC.application.security.service.JwtUserDetailsService;
 import io.nuwe.hackatonMWC.domain.entities.User;
+import io.nuwe.hackatonMWC.infraestructure.security.entity.JwtRequestModel;
+import io.nuwe.hackatonMWC.infraestructure.security.entity.JwtResponseModel;
+import io.nuwe.hackatonMWC.infraestructure.security.jwtutils.TokenManager;
+import io.nuwe.hackatonMWC.infraestructure.security.service.JwtUserDetailsService;
 import io.nuwe.hackatonMWC.infraestructure.services.UserService;
 
 /**
