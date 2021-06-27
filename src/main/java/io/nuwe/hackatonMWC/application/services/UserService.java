@@ -1,4 +1,4 @@
-package io.nuwe.hackatonMWC.infraestructure.services;
+package io.nuwe.hackatonMWC.application.services;
 
 import java.util.InputMismatchException;
 import java.util.InvalidPropertiesFormatException;
@@ -9,12 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import io.nuwe.hackatonMWC.application.apis.ApiMailboxlayer;
-import io.nuwe.hackatonMWC.application.dto.UserDTO;
+import io.nuwe.hackatonMWC.application.exceptions.AlreadyExistsException;
 import io.nuwe.hackatonMWC.domain.entities.User;
 import io.nuwe.hackatonMWC.domain.repository.IUserRepository;
+import io.nuwe.hackatonMWC.infraestructure.apis.ApiMailboxlayer;
+import io.nuwe.hackatonMWC.infraestructure.dto.UserDTO;
 import io.nuwe.hackatonMWC.infraestructure.email.EmailService;
-import io.nuwe.hackatonMWC.infraestructure.exceptions.AlreadyExistsException;
 
 @Service
 public class UserService {

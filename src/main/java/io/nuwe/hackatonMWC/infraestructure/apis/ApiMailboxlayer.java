@@ -1,4 +1,4 @@
-package io.nuwe.hackatonMWC.application.apis;
+package io.nuwe.hackatonMWC.infraestructure.apis;
 
 import java.util.InvalidPropertiesFormatException;
 

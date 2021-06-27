@@ -1,4 +1,4 @@
-package io.nuwe.hackatonMWC.application.repositorys;
+package io.nuwe.hackatonMWC.infraestructure.repositorys;
 
 import java.util.Optional;
 

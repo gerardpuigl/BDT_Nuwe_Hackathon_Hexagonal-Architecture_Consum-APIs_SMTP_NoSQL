@@ -1,4 +1,4 @@
-package io.nuwe.hackatonMWC.infraestructure.services;
+package io.nuwe.hackatonMWC.application.services;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -6,8 +6,8 @@ import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import io.nuwe.hackatonMWC.application.apis.ApiRESTCountries;
-import io.nuwe.hackatonMWC.application.dto.CountryDTO;
+import io.nuwe.hackatonMWC.infraestructure.apis.ApiRESTCountries;
+import io.nuwe.hackatonMWC.infraestructure.dto.CountryDTO;
 
 @Service
 public class CountriesService {

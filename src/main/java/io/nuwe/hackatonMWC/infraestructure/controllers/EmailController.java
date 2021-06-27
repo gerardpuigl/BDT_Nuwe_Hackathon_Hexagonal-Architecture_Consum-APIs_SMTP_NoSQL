@@ -1,4 +1,4 @@
-package io.nuwe.hackatonMWC.application.controllers;
+package io.nuwe.hackatonMWC.infraestructure.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.nuwe.hackatonMWC.application.dto.UserDTO;
+import io.nuwe.hackatonMWC.application.services.UserService;
+import io.nuwe.hackatonMWC.infraestructure.dto.UserDTO;
 import io.nuwe.hackatonMWC.infraestructure.email.EmailService;
-import io.nuwe.hackatonMWC.infraestructure.services.UserService;
 
 
 @RestController

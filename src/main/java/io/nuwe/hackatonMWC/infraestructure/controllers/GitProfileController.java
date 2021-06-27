@@ -1,4 +1,4 @@
-package io.nuwe.hackatonMWC.application.controllers;
+package io.nuwe.hackatonMWC.infraestructure.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.nuwe.hackatonMWC.application.dto.GithubDTO;
-import io.nuwe.hackatonMWC.application.dto.GitlabDTO;
-import io.nuwe.hackatonMWC.infraestructure.services.GitProfileService;
-import io.nuwe.hackatonMWC.infraestructure.services.UserService;
+import io.nuwe.hackatonMWC.application.services.GitProfileService;
+import io.nuwe.hackatonMWC.application.services.UserService;
+import io.nuwe.hackatonMWC.infraestructure.dto.GithubDTO;
+import io.nuwe.hackatonMWC.infraestructure.dto.GitlabDTO;
 
 @RestController
 @RequestMapping("/user/{id}")

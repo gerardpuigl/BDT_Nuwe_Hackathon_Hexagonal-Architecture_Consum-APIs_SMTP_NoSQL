@@ -1,4 +1,4 @@
-package io.nuwe.hackatonMWC.application.controllers;
+package io.nuwe.hackatonMWC.infraestructure.controllers;
 
 
 import java.util.List;
@@ -9,8 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.nuwe.hackatonMWC.application.dto.CountryDTO;
-import io.nuwe.hackatonMWC.infraestructure.services.CountriesService;
+import io.nuwe.hackatonMWC.application.services.CountriesService;
+import io.nuwe.hackatonMWC.infraestructure.dto.CountryDTO;
 
 
 @RestController

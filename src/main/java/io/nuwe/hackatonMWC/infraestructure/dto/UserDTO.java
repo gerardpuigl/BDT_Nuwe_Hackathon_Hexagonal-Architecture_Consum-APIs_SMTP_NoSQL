@@ -1,4 +1,4 @@
-package io.nuwe.hackatonMWC.application.dto;
+package io.nuwe.hackatonMWC.infraestructure.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 

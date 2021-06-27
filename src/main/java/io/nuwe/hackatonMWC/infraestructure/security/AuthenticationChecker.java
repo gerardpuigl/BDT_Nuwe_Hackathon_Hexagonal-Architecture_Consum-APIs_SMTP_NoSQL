@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
-import io.nuwe.hackatonMWC.application.dto.UserDTO;
-import io.nuwe.hackatonMWC.infraestructure.services.UserService;
+import io.nuwe.hackatonMWC.application.services.UserService;
+import io.nuwe.hackatonMWC.infraestructure.dto.UserDTO;
 
 @Component
 public class AuthenticationChecker {

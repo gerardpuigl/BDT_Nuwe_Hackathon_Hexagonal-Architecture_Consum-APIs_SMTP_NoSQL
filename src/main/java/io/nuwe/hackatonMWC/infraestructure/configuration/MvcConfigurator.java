@@ -1,4 +1,4 @@
-package io.nuwe.hackatonMWC.application.configuration;
+package io.nuwe.hackatonMWC.infraestructure.configuration;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;

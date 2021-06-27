@@ -1,4 +1,4 @@
-package io.nuwe.hackatonMWC.application.apis;
+package io.nuwe.hackatonMWC.infraestructure.apis;
 
 import java.util.List;
 
@@ -8,8 +8,8 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import io.nuwe.hackatonMWC.application.dto.GithubDTO;
-import io.nuwe.hackatonMWC.application.dto.GithubRepoDTO;
+import io.nuwe.hackatonMWC.infraestructure.dto.GithubDTO;
+import io.nuwe.hackatonMWC.infraestructure.dto.GithubRepoDTO;
 
 @Component
 public class ApiGithub {

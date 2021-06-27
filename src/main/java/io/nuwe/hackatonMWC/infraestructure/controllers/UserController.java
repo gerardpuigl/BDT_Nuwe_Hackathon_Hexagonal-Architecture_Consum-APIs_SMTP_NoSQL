@@ -1,4 +1,4 @@
-package io.nuwe.hackatonMWC.application.controllers;
+package io.nuwe.hackatonMWC.infraestructure.controllers;
 
 import java.util.NoSuchElementException;
 
@@ -17,11 +17,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.nuwe.hackatonMWC.application.dto.UserDTO;
+import io.nuwe.hackatonMWC.application.services.GitProfileService;
+import io.nuwe.hackatonMWC.application.services.UserService;
 import io.nuwe.hackatonMWC.domain.entities.User;
+import io.nuwe.hackatonMWC.infraestructure.dto.UserDTO;
 import io.nuwe.hackatonMWC.infraestructure.security.AuthenticationChecker;
-import io.nuwe.hackatonMWC.infraestructure.services.GitProfileService;
-import io.nuwe.hackatonMWC.infraestructure.services.UserService;
 
 @RestController
 @RequestMapping("/user")

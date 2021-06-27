@@ -1,4 +1,4 @@
-package io.nuwe.hackatonMWC.infraestructure.exceptions;
+package io.nuwe.hackatonMWC.application.exceptions;
 
 public class AlreadyExistsException extends Exception {
 

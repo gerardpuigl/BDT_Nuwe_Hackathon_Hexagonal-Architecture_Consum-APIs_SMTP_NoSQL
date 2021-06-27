@@ -1,4 +1,4 @@
-package io.nuwe.hackatonMWC.infraestructure.services;
+package io.nuwe.hackatonMWC.application.services;
 
 import java.util.NoSuchElementException;
 
@@ -7,12 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Service;
 
-import io.nuwe.hackatonMWC.application.apis.ApiGithub;
-import io.nuwe.hackatonMWC.application.apis.ApiGitlab;
-import io.nuwe.hackatonMWC.application.dto.GithubDTO;
-import io.nuwe.hackatonMWC.application.dto.GitlabDTO;
 import io.nuwe.hackatonMWC.domain.entities.User;
 import io.nuwe.hackatonMWC.domain.repository.IUserRepository;
+import io.nuwe.hackatonMWC.infraestructure.apis.ApiGithub;
+import io.nuwe.hackatonMWC.infraestructure.apis.ApiGitlab;
+import io.nuwe.hackatonMWC.infraestructure.dto.GithubDTO;
+import io.nuwe.hackatonMWC.infraestructure.dto.GitlabDTO;
 
 
 @Service

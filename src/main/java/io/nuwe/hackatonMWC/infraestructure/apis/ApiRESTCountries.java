@@ -1,4 +1,4 @@
-package io.nuwe.hackatonMWC.application.apis;
+package io.nuwe.hackatonMWC.infraestructure.apis;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,7 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import io.nuwe.hackatonMWC.application.dto.CountryDTO;
+import io.nuwe.hackatonMWC.infraestructure.dto.CountryDTO;
 
 @Component
 public class ApiRESTCountries {
