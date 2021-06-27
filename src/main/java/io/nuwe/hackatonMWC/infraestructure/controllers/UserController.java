@@ -75,7 +75,7 @@ public class UserController {
 		}
 	}
 	
-	@GetMapping("/{username}/name")
+	@GetMapping("/name/{username}")
 	public ResponseEntity<Object> getUserByName(Authentication auth, @PathVariable("username") String username) {
 		try {
 			authenticationChecker.checkAuthUserAndUsername(auth,username);

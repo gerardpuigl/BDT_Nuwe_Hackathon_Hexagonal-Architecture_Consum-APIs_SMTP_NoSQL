@@ -1,13 +1,16 @@
-package io.nuwe.hackatonMWC.domain.entities;
+package io.nuwe.hackatonMWC.infraestructure.repositorys;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public class User {
+
+@Document(collection = "user")
+public class MongoUserEntity {
 	
 	@Id
 	private String id;
@@ -33,10 +36,10 @@ public class User {
 	
 	private String countryId;
 
-	public User() {
+	public MongoUserEntity() {
 	}
 	
-	public User(String id, String name, String username, @Email(message = "Email no valid.") String email,
+	public MongoUserEntity(String id, String name, String username, @Email(message = "Email no valid.") String email,
 			boolean isEmailVerified, String password, String githubUserId, String gitlabUserId, String countryId) {
 		this.id = id;
 		this.name = name;
