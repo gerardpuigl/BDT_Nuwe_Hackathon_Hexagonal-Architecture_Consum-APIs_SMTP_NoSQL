@@ -1,4 +1,4 @@
-package io.nuwe.hackatonMWC.infraestructure.repositorys;
+package io.nuwe.hackatonMWC.infraestructure.repositorys.mongodb;
 
 import java.util.Optional;
 
@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import io.nuwe.hackatonMWC.domain.entities.User;
 import io.nuwe.hackatonMWC.domain.repository.IUserRepository;
+import io.nuwe.hackatonMWC.infraestructure.repositorys.mongodb.entities.MongoUserEntity;
 
 @Component
 @Primary
@@ -19,7 +20,7 @@ public class MongoUserRepository implements IUserRepository {
 
 	// To map entity to DTO.
 	@Autowired
-	ModelMapper modelMapper;
+	private ModelMapper modelMapper;
 
 	@Autowired
 	public MongoUserRepository(final IMongoUserRepository userRepository) {
