@@ -11,10 +11,14 @@ import org.springframework.web.bind.annotation.RestController;
 import io.nuwe.hackatonMWC.application.services.UserService;
 import io.nuwe.hackatonMWC.infraestructure.dto.UserDTO;
 import io.nuwe.hackatonMWC.infraestructure.email.EmailService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 
 @RestController
 @RequestMapping("/user/{id}")
+@SecurityRequirement(name = "bearerAuth")
+@Tag(name = "05 - Emails")
 public class EmailController {
 
 	@Autowired

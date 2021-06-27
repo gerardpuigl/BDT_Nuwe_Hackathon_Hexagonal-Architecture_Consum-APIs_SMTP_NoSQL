@@ -25,9 +25,13 @@ import io.nuwe.hackatonMWC.application.services.UserService;
 import io.nuwe.hackatonMWC.domain.entities.User;
 import io.nuwe.hackatonMWC.infraestructure.dto.UserDTO;
 import io.nuwe.hackatonMWC.infraestructure.security.AuthenticationChecker;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/user")
+@SecurityRequirement(name = "bearerAuth")
+@Tag(name = "02 -Users")
 public class UserController {
 
 	@Autowired
