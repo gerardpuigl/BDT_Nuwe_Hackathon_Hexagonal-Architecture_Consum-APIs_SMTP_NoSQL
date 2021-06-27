@@ -12,10 +12,10 @@ public class User {
 	@Id
 	private String id;
 	
-	@NotBlank
+	@NotBlank(message = "Name is mandatory.")
 	private String name;
 	
-	@NotBlank
+	@NotBlank(message = "Username is mandatory.")
 	private String username;
 	
 	@Email(message="Email no valid.")
@@ -24,7 +24,7 @@ public class User {
 	
 	private boolean isEmailVerified;
 	
-	@NotBlank
+	@NotBlank(message = "Password is mandatory.")
 	private String password;
 	
 	private String githubUserId;
