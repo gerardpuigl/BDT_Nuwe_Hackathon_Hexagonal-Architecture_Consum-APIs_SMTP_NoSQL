@@ -22,13 +22,18 @@ public class ApiRESTCountries {
     
     @PostConstruct
 	private void FillCountryList_WhenStartAPP() {
-		countryList = webClient.get()
-			.uri("https://restcountries.eu/rest/v2/all")
-			.accept(MediaType.APPLICATION_JSON)
-			.retrieve()
-			.bodyToFlux(CountryDTO.class)
-			.buffer().blockLast();
-		setIdWithCode2(countryList);
+    	try {
+    		countryList = webClient.get()
+    				.uri("https://restcountries.eu/rest/v2/all")
+    				.accept(MediaType.APPLICATION_JSON)
+    				.retrieve()
+    				.bodyToFlux(CountryDTO.class)
+    				.buffer().blockLast();
+    			setIdWithCode2(countryList);
+		} catch (Exception e) {
+			System.out.println("The country list can't be filled.");
+			System.out.println(e.getMessage());
+		}
 	}
     
     private void setIdWithCode2(List<CountryDTO> countryList) {
