@@ -1,4 +1,4 @@
-package io.nuwe.hackatonMWC.infraestructure.repositorys;
+package io.nuwe.hackatonMWC.infraestructure.repositorys.mongodb.entities;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
