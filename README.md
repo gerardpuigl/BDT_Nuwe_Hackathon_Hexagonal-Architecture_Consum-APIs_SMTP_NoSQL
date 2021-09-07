@@ -6,11 +6,10 @@ El cliente quiere poder guardar los datos de sus usuarios y de las cuentas de Gi
 
 El arquitecto propone el siguiente esquema:
 
-<details>
-    <summary>VER ESQUEMA</summary>
+## VER ESQUEMA
+<p>
         <img src="https://github.com/gerardpuigl/BDT_Hackathon_MWC/blob/main/schema/ArchitectureSchema.jpg" alt="java" title="java" width=100%/>
-</details>
- 
+ </p>
  ----
 
 ## Tecnologias utilizadas
@@ -461,7 +460,7 @@ or
 ## Country List:
 - **Descripción**: Devuele la lista de paises donde los parámetros que devuelo son los que se muestran en el diseño de la arquitectura
 - **AUTH** : Necesitas enviar un Jwt Token en el header.
-- **Method & Path**: `[GET] /contries`
+- **Method & Path**: `[GET] /countries`
 
 <details>
     <summary>More information</summary>
