@@ -4,14 +4,13 @@ import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 import io.nuwe.hackatonMWC.domain.entities.User;
 import io.nuwe.hackatonMWC.domain.repository.IUserRepository;
 import io.nuwe.hackatonMWC.infraestructure.repositorys.postgresql.entities.PostgreUserEntity;
 
-@Component
+//@Component
 public class PostgreUserRepository implements IUserRepository {
 
 	@Autowired
