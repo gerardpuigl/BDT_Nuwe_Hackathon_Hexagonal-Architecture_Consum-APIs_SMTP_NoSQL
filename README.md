@@ -1,4 +1,4 @@
-# Hackathon Individual MWC Reto backend by Nuwe & BDT
+# Hackathon MWC Reto backend by Nuwe & BDT
 
 Desde cliente nos han pedido poder hacer una implementación de varias APIs y poder simplificar la respuesta.
 
