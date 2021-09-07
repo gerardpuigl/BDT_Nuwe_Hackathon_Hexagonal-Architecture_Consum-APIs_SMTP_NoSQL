@@ -7,8 +7,8 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
-import io.nuwe.hackatonMWC.application.dto.UserDTO;
 import io.nuwe.hackatonMWC.domain.entities.User;
+import io.nuwe.hackatonMWC.infraestructure.dto.UserDTO;
 
 
 

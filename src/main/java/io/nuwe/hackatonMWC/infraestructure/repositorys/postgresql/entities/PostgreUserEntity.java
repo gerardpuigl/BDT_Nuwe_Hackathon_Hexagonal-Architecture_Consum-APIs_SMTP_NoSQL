@@ -1,30 +1,33 @@
-package io.nuwe.hackatonMWC.domain.entities;
+package io.nuwe.hackatonMWC.infraestructure.repositorys.postgresql.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
 
-import org.springframework.data.annotation.Id;
+import org.hibernate.annotations.GenericGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public class User {
+
+@Entity(name="users")
+public class PostgreUserEntity {
 	
-	@Id
+    @Id
+    @GeneratedValue(generator = "uuid" )
+    @GenericGenerator(name = "uuid", strategy = "uuid")
+    @Column(name = "id")
 	private String id;
 	
-	@NotBlank(message = "Name is mandatory.")
 	private String name;
-	
-	@NotBlank(message = "Username is mandatory.")
+
 	private String username;
 	
-	@Email(message="Email no valid.")
-	@NotBlank
 	private String email;
 	
 	private boolean isEmailVerified;
 	
-	@NotBlank(message = "Password is mandatory.")
 	private String password;
 	
 	private String githubUserId;
@@ -33,10 +36,10 @@ public class User {
 	
 	private String countryId;
 
-	public User() {
+	public PostgreUserEntity() {
 	}
 	
-	public User(String id, String name, String username, @Email(message = "Email no valid.") String email,
+	public PostgreUserEntity(String id, String name, String username, @Email(message = "Email no valid.") String email,
 			boolean isEmailVerified, String password, String githubUserId, String gitlabUserId, String countryId) {
 		this.id = id;
 		this.name = name;

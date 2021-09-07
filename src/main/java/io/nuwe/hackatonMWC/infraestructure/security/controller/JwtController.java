@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.nuwe.hackatonMWC.application.services.UserService;
 import io.nuwe.hackatonMWC.domain.entities.User;
 import io.nuwe.hackatonMWC.infraestructure.security.entity.JwtRequestModel;
 import io.nuwe.hackatonMWC.infraestructure.security.entity.JwtResponseModel;
 import io.nuwe.hackatonMWC.infraestructure.security.jwtutils.TokenManager;
 import io.nuwe.hackatonMWC.infraestructure.security.service.JwtUserDetailsService;
-import io.nuwe.hackatonMWC.infraestructure.services.UserService;
 
 /**
  * Controller for authentication
