@@ -12,7 +12,8 @@ import io.swagger.v3.oas.annotations.security.SecurityScheme;
 
 
 @Configuration
-@OpenAPIDefinition(info = @Info(title = "My API", version = "v1"))
+@OpenAPIDefinition(info = @Info(title = "API_BDT_Hackathon_MWC", 
+	description = "An API that consumes other APIs and extract the necessary information to be served to the front-end. User CRUD, JWT security and email notification are also implemented."))
 @SecurityScheme(
     name = "bearerAuth",
     type = SecuritySchemeType.HTTP,
@@ -24,14 +25,3 @@ import io.swagger.v3.oas.annotations.security.SecurityScheme;
 public class OpenApi30Config {
 
 }
-
-//@Configuration
-//@OpenAPIDefinition(info = @Info(title = "My API", version = "v1"))
-//@SecurityScheme(
-//  name = "basicAuth",
-//  type = SecuritySchemeType.HTTP,
-//  scheme = "basic"
-//)
-//public class OpenApi30Config {
-//
-//}
