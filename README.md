@@ -25,7 +25,7 @@ El arquitecto propone el siguiente esquema:
 - [Gitlab API](https://docs.gitlab.com/ee/api/)
 
 ## URL
-https://gerardpuigbdthackathonmwc.herokuapp.com/
+- [DEMO](https://gerardpuigbdthackathonmwc.herokuapp.com/)
 
  ----
 
@@ -518,7 +518,7 @@ or
 
 # Testing
 
-En la carpeta Postman de este repositorio encontrará una colección completa de peticiones y cuatro entornos para probar con las credenciales de autenticación correctas e incorrectas para testear la seguridad i para la aplicación en local o la desplegada en heroku.
+En la carpeta Postman de este repositorio encontrará una colección completa de peticiones y cuatro entornos para probar con las credenciales de autenticación correctas e incorrectas para testear la seguridad y para la aplicación en local o la desplegada en heroku.
 
 Disfruta de esta API.
 
