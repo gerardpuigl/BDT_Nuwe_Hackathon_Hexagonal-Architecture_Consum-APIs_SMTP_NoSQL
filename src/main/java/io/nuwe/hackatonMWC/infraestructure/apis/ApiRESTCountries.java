@@ -24,7 +24,7 @@ public class ApiRESTCountries {
 	private void FillCountryList_WhenStartAPP() {
     	try {
     		countryList = webClient.get()
-    				.uri("https://restcountries.eu/rest/v2/all")
+    				.uri("https://restcountries.com/v2/all")
     				.accept(MediaType.APPLICATION_JSON)
     				.retrieve()
     				.bodyToFlux(CountryDTO.class)

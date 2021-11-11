@@ -21,6 +21,7 @@ import io.nuwe.hackatonMWC.infraestructure.security.entity.JwtRequestModel;
 import io.nuwe.hackatonMWC.infraestructure.security.entity.JwtResponseModel;
 import io.nuwe.hackatonMWC.infraestructure.security.jwtutils.TokenManager;
 import io.nuwe.hackatonMWC.infraestructure.security.service.JwtUserDetailsService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 /**
  * Controller for authentication
@@ -28,6 +29,7 @@ import io.nuwe.hackatonMWC.infraestructure.security.service.JwtUserDetailsServic
  */
 @RestController
 @CrossOrigin
+@Tag(name = "01 -Authentication", description = "Test: 'username' : 'User02', 'password' : 'hackathonMWC'")
 public class JwtController {
 
 	/**

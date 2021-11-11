@@ -11,9 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.nuwe.hackatonMWC.application.services.CountriesService;
 import io.nuwe.hackatonMWC.infraestructure.dto.CountryDTO;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 
 @RestController
+@SecurityRequirement(name = "bearerAuth")
+@Tag(name = "04 - Countries Api")
 public class CountryController {
 
 	@Autowired

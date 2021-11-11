@@ -13,9 +13,13 @@ import io.nuwe.hackatonMWC.application.services.GitProfileService;
 import io.nuwe.hackatonMWC.application.services.UserService;
 import io.nuwe.hackatonMWC.infraestructure.dto.GithubDTO;
 import io.nuwe.hackatonMWC.infraestructure.dto.GitlabDTO;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/user/{id}")
+@SecurityRequirement(name = "bearerAuth")
+@Tag(name = "03 - Git Profiles")
 public class GitProfileController {
 
 	@Autowired
